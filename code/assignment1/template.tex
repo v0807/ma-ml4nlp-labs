@@ -1,0 +1,284 @@
+% This must be in the first 5 lines to tell arXiv to use pdfLaTeX, which is strongly recommended.
+\pdfoutput=1
+% In particular, the hyperref package requires pdfLaTeX in order to break URLs across lines.
+
+\documentclass[11pt]{article}
+
+% Remove the "review" option to generate the final version.
+\usepackage[]{acl2020}
+
+% Standard package includes
+\usepackage{times}
+\usepackage{latexsym}
+
+% For proper rendering and hyphenation of words containing Latin characters (including in bib files)
+\usepackage[T1]{fontenc}
+% For Vietnamese characters
+% \usepackage[T5]{fontenc}
+% See https://www.latex-project.org/help/documentation/encguide.pdf for other character sets
+
+% This assumes your files are encoded as UTF8
+\usepackage[utf8]{inputenc}
+
+% This is not strictly necessary, and may be commented out,
+% but it will improve the layout of the manuscript,
+% and will typically save some space.
+\usepackage{microtype}
+
+%% added by pia:
+\usepackage{amsmath,amssymb,mathtools} % Math
+\usepackage{url}
+\usepackage{multirow} 
+\usepackage{booktabs}
+\usepackage{natbib}
+
+% If the title and author information does not fit in the area allocated, uncomment the following
+%
+%\setlength\titlebox{<dim>}
+%
+% and set <dim> to something 5cm or larger.
+
+\title{Machine Learning for Named Entity Recognition and Classification\\ Report, Theoretical Component, and NERC-Research Preparation}
+
+% Author information can be set in various styles:
+% For several authors from the same institution:
+% \author{Author 1 \and ... \and Author n \\
+%         Address line \\ ... \\ Address line}
+% if the names do not fit well on one line use
+%         Author 1 \\ {\bf Author 2} \\ ... \\ {\bf Author n} \\
+% For authors from different institutions:
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \And  ... \And
+%         Author n \\ Address line \\ ... \\ Address line}
+% To start a seperate ``row'' of authors use \AND, as in
+% \author{Author 1 \\ Address line \\  ... \\ Address line
+%         \AND
+%         Author 2 \\ Address line \\ ... \\ Address line \And
+%         Author 3 \\ Address line \\ ... \\ Address line}
+
+\author{Vera Langeberg}
+
+\begin{document}
+
+
+
+\maketitle
+\begin{abstract}
+    Fill in a short abstract for your final submission.
+
+\end{abstract}
+
+%The final report has a strict maximum of 6 pages (12 columns)
+
+\textcolor{magenta}{We recommend aiming for a report of around 6. This does not include acknowledgements or references (they may appear on page 7 and later if needed). You can use appendices if you want to share more details. Below, we provide length indications per section. Please try to stick to them, but don't worry about receiving a lower grade if you don't quite manage. They are supposed to help you and prevent you from doing extra work.}
+
+\section{Introduction}
+
+\textcolor{magenta}{Length: ±  1/2 - max 1 column for Introduction}
+
+
+Write a short introduction to your approach for the final submission. The introduction should include:
+
+\begin{itemize}
+    \item A brief description of the task (not detailed)
+    \item An outline of the ML approaches included in the report
+    \item A brief summary of your results
+\end{itemize}
+
+\begin{itemize}
+    \item[] \textit{Assignment 3}
+\end{itemize}
+
+
+
+\section{Task and Data}
+
+\textcolor{magenta}{Length: ± 1.5-2 columns for Task and Data.}
+
+
+\subsection{Task}
+
+
+
+\begin{itemize}
+    \item[] \textit{Assignment 1} NER task description
+    \item[] \textit{Assignment 2} Update if necessary
+    \item[] \textit{Assignment 3} Update if necessary
+\end{itemize}
+
+\subsection{Dataset and Distribution}
+
+
+
+\begin{itemize}
+    \item[] \textit{Assignment 1} Data description and distribution
+    \item[] \textit{Assignment 2} update if necessary
+    \item[] \textit{Assignment 3} update if necessary
+\end{itemize}
+
+
+
+\subsection{Preprocessing}
+
+\begin{itemize}
+    \item[] \textit{Assignment 1} Preprocessing you did for first analysis
+    \item[] \textit{Assignment 2} update (if applicable)
+    \item[] \textit{Assignment 3} update (if applicable)
+\end{itemize}
+
+
+
+\subsection{Evaluation Metrics}
+
+\begin{itemize}
+    \item[] \textit{Assignment 1}
+    \item[] \textit{Assignment 2 and 3}: Update if necessary
+\end{itemize}
+
+
+
+\section{Models and Features}
+
+\textcolor{magenta}{Length: ± 2 columns for Models and Features.}
+
+\subsection{Models}
+
+\begin{itemize}
+    \item[] \textit{Assignment 1} Logistic Regression
+    \item[]\textit{Assignment 2} Alternative Methods (SVM, NB)
+    \item[]\textit{Assignment 3} More advanced models (fine-tuning BERT, CRF for ReMA students only)
+\end{itemize}
+
+
+\subsection{Features}
+
+\begin{itemize}
+    \item[] \textit{Assignment 1} Feature exploration
+    \item[] \textit{Assignment 2} More features
+    \item[] \textit{Assignment 3} More advanced features
+\end{itemize}
+
+
+
+
+\section{Experiments and Results}
+
+\textcolor{magenta}{Length: ± 3 columns (including figures and tables) for Experiments and Results. Additional material can be provided in the Appendix.}
+
+\subsection{Evaluation}
+
+\begin{itemize}
+    \item [] \textit{Assignment 1}: first results
+    \item [] \textit{Assignment 2}: update
+    \item [] \textit{Assignment 3}: update
+\end{itemize}
+
+\subsection{Feature Ablation}
+
+\begin{itemize}
+    \item [] \textit{Assignment 3}: feature ablation for one system \textcolor{magenta}{Note: if you decide after your feature ablation that you would like to discuss this before the Evaluation, you may move this subsection.}
+\end{itemize}
+
+
+\section{Error Analysis}
+
+\textcolor{magenta}{Length: ± 1.5-2 columns for Error Analysis.}
+
+\begin{itemize}
+    \item [] \textit{Assignment 3}: beyond the confusion matrix
+\end{itemize}
+
+
+\section{Discussion}
+
+\textcolor{magenta}{Length: ± 1 column for Discussion and Conclusion together.}
+
+\begin{itemize}
+    \item [] \textit{Assignment 3}
+\end{itemize}
+
+\section{Conclusion}
+
+\begin{itemize}
+    \item [] \textit{Assignment 3}
+\end{itemize}
+
+
+
+
+
+
+\section*{Acknowledgements}
+
+
+
+% Entries for the entire Anthology, followed by custom entries
+\bibliography{references}
+
+\clearpage
+
+
+\appendix
+
+\section*{Theoretical Component}
+
+\subsection*{Assignment 1 - What is Machine learning?}
+
+My answer on the question "What is Machine learning" is based on the name itself.
+Machine learning is about machines learning, but this sounds still very silly and unclear.
+Therefore, lets first dive into the machines part.
+People should not think about machines like the first typewriter, or motor engines, or even your normal kitchen blender.
+We should also not think about the computers or calculators that run simple algorithms.
+Algorithms are mostly strictly defined, like the ones embedded in your regular calculators.
+These machines do not learn, they just follow a set of rules that are already defined.
+This is not machine learning, it is following a recipe.
+If the recipe is bad, you will get a burned cake. If you don't adjust the oven temperature next time, the cake will burn over and over again.
+The machines we are looking at are different.
+They can learn from data, identify patterns, and make decisions based on that data \cite{mitchell1997machine}.
+To get back to our cake, this means that after one time burning the cake, it will lower the temperature next time, or even adjust the baking time.
+It can be undercooked that time, but it will learn from that as well, and adjust again.
+This learning from data and identifying patterns is the essence of machine learning \cite{alpaydin2020introduction}.
+
+
+\subsection*{Assignment 2}
+
+
+\subsection*{Assignment 3}
+
+
+
+\clearpage
+
+\section*{Time spent}\label{app.time}
+
+\begin{table}[!htb]
+    \centering
+    \small{
+        \begin{tabular}{p{1cm}p{3cm}p{1cm}}
+            \toprule
+            Week  & Task                                                   & Time       \\
+            \midrule
+            1     & understand the assignment and getting everything setup & 30 minutes \\
+            1     & watch videos                                           & 30 minutes \\
+            1     & understand labels in data                              & 1 hour     \\
+            \midrule
+            Total & 2h                                                                  \\
+
+            \bottomrule
+        \end{tabular}
+        \caption{Time overview. \label{time} }}
+\end{table}
+
+\section{Example Appendix}
+\label{sec:appendix}
+
+This is an appendix. You can include additional analyses and tables here (e.g.\ samples you analyzed for your error analysis).
+
+\clearpage
+
+\section*{NERC-research preparation}
+\subsection*{2.1.1 - NER given the CoNLL dataset}
+
+\subsection*{2.2.1 - How does CoNLL work?}
+
+\end{document}
