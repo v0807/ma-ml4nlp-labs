@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  28 OCT 2025 11:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  7 NOV 2025 11:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.tex
-(/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.tex
+**/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex
+(/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
@@ -22,7 +22,7 @@ File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen134
-) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/acl2020.sty
+) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/acl2020.sty
 Conference Style for ACL
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
@@ -342,7 +342,7 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count281
 \l__pdf_internal_box=\box47
-) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.aux)
+) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux)
 \openout1 = `template.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
@@ -426,7 +426,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 61.
 LaTeX Info: Redefining \pageref on input line 61.
 LaTeX Info: Redefining \nameref on input line 61.
- (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.out) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.out)
+ (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.out) (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.out)
 \@outlinefile=\write3
 \openout3 = `template.out'.
 
@@ -482,46 +482,145 @@ File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 
 
 
-] (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.bbl) [2
-
-] [3
-
-
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
-[]\T1/ptm/m/n/9 (+20) understand la-bels in
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 147.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `pcr' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+<figures/label_distribution.png, id=83, 521.7894pt x 362.0727pt>
+File: figures/label_distribution.png Graphic file (type png)
+<use figures/label_distribution.png>
+Package pdftex.def Info: figures/label_distribution.png  used on input line 157.
+(pdftex.def)             Requested size: 153.35962pt x 106.41826pt.
+<figures/label_distribution_without_o.png, id=85, 508.7808pt x 362.0727pt>
+File: figures/label_distribution_without_o.png Graphic file (type png)
+<use figures/label_distribution_without_o.png>
+Package pdftex.def Info: figures/label_distribution_without_o.png  used on input line 164.
+(pdftex.def)             Requested size: 153.35962pt x 109.13644pt.
+ [2 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/label_distribution.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/label_distribution_without_o.png>]
+Underfull \hbox (badness 2401) in paragraph at lines 230--231
+\T1/ptm/m/n/10.95 (+20) nouns and po-ten-tial named en-ti-ties,
  []
 
-[4
+<figures/results_log.png, id=100, 467.7475pt x 291.0875pt>
+File: figures/results_log.png Graphic file (type png)
+<use figures/results_log.png>
+Package pdftex.def Info: figures/results_log.png  used on input line 253.
+(pdftex.def)             Requested size: 153.35962pt x 95.43733pt.
+<figures/confusion_matrix_log.png, id=101, 391.7034pt x 312.2064pt>
+File: figures/confusion_matrix_log.png Graphic file (type png)
+<use figures/confusion_matrix_log.png>
+Package pdftex.def Info: figures/confusion_matrix_log.png  used on input line 259.
+(pdftex.def)             Requested size: 153.35962pt x 122.23639pt.
+(/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.bbl
+Underfull \hbox (badness 2469) in paragraph at lines 5--8
+[]\T1/ptm/m/n/10 Erik F. Tjong Kim Sang and Fien De Meul-der.
+ []
+
+[3 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/results_log.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/confusion_matrix_log.png>]) [4
+
+] [5
+
+]
+Underfull \hbox (badness 3271) in paragraph at lines 373--373
+[]\T1/ptm/m/n/9 (+20) Watch the videos of
+ []
+
+
+Underfull \hbox (badness 3323) in paragraph at lines 374--374
+[]\T1/ptm/m/n/9 (+20) Finish 2.1 about un-
+ []
+
+
+Underfull \hbox (badness 1337) in paragraph at lines 374--374
+\T1/ptm/m/n/9 (+20) der-stand-ing NER and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--375
+[]\T1/ptm/m/n/9 (+20) 1.5
+ []
+
+
+Underfull \hbox (badness 2189) in paragraph at lines 377--377
+[]\T1/ptm/m/n/9 (+20) Started with 3.1, de-
+ []
+
+
+Underfull \hbox (badness 1242) in paragraph at lines 377--377
+\T1/ptm/m/n/9 (+20) scrip-tion of pre-ci-sion,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 377--378
+[]\T1/ptm/m/n/9 (+20) 0.5
+ []
+
+[6
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 284.
- [5
-
+<figures/POS.png, id=138, 627.3036pt x 364.9635pt>
+File: figures/POS.png Graphic file (type png)
+<use figures/POS.png>
+Package pdftex.def Info: figures/POS.png  used on input line 448.
+(pdftex.def)             Requested size: 153.35962pt x 89.2247pt.
+<figures/capitalized.png, id=140, 431.4519pt x 314.3745pt>
+File: figures/capitalized.png Graphic file (type png)
+<use figures/capitalized.png>
+Package pdftex.def Info: figures/capitalized.png  used on input line 456.
+(pdftex.def)             Requested size: 153.35962pt x 111.74522pt.
+<figures/tokens_before_NE.png, id=143, 620.7993pt x 352.6776pt>
+File: figures/tokens_before_NE.png Graphic file (type png)
+<use figures/tokens_before_NE.png>
+Package pdftex.def Info: figures/tokens_before_NE.png  used on input line 466.
+(pdftex.def)             Requested size: 153.35962pt x 87.1198pt.
+<figures/NE_preciding_tokes.png, id=144, 620.7993pt x 351.2322pt>
+File: figures/NE_preciding_tokes.png Graphic file (type png)
+<use figures/NE_preciding_tokes.png>
+Package pdftex.def Info: figures/NE_preciding_tokes.png  used on input line 472.
+(pdftex.def)             Requested size: 153.35962pt x 86.76276pt.
+ [7
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 284.
- (/home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 284.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 284.
+<figures/word_freq_with_IOB.png, id=157, 714.7503pt x 1292.9103pt>
+File: figures/word_freq_with_IOB.png Graphic file (type png)
+<use figures/word_freq_with_IOB.png>
+Package pdftex.def Info: figures/word_freq_with_IOB.png  used on input line 480.
+(pdftex.def)             Requested size: 153.35962pt x 277.39818pt.
+<figures/word_freq_without_IOB.png, id=160, 714.7503pt x 570.933pt>
+File: figures/word_freq_without_IOB.png Graphic file (type png)
+<use figures/word_freq_without_IOB.png>
+Package pdftex.def Info: figures/word_freq_without_IOB.png  used on input line 489.
+(pdftex.def)             Requested size: 153.35962pt x 122.49556pt.
+ [8 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/POS.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/capitalized.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/tokens_before_NE.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/NE_preciding_tokes.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_with_IOB.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_without_IOB.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 548.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 548.
+ (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 548.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 548.
 Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: E6B56CF7233303BACFCED6D497D2C1AF;896.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 284.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 548.
  ) 
 Here is how much of TeX's memory you used:
- 11242 strings out of 483107
- 173469 string characters out of 5964629
- 467339 words of memory out of 5000000
- 25948 multiletter control sequences out of 15000+600000
- 569298 words of font info for 122 fonts, out of 8000000 for 9000
+ 11444 strings out of 483107
+ 177008 string characters out of 5964629
+ 471375 words of memory out of 5000000
+ 26036 multiletter control sequences out of 15000+600000
+ 570567 words of font info for 175 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 49i,10n,46p,530b,397s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs/code/assignment1/template.pdf (5 pages, 50692 bytes).
+ 49i,10n,46p,532b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf (9 pages, 394218 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 119 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 20609 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 211 PDF objects out of 1000 (max. 8388607)
+ 174 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 20659 words of extra memory for PDF output out of 20736 (max. 10000000)
 
