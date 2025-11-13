@@ -121,8 +121,6 @@ Write a short introduction to your approach for the final submission. The introd
           The span "Amsterdam" is a location entity:
           "Amsterdam" would be labeled as "B-LOC" (beginning of location span)
           This approach allows the NER system to identify both single-token and multi-token named entity spans while performing token-level classification, effectively bridging the gap between span identification and token classification.
-
-    \item[] \textit{Assignment 2} Update if necessary
     \item[] \textit{Assignment 3} Update if necessary
 \end{itemize}
 
@@ -170,7 +168,6 @@ LONDON	NNP	B-NP	B-LOC
           Here the IOB tags have been removed for clarity.
           For location, "u.s" is most common, "cup" is most common for miscellaneous names,"clinton" for persons and "of" for organizations.
 
-    \item[] \textit{Assignment 2} update if necessary
     \item[] \textit{Assignment 3} update if necessary
 \end{itemize}
 
@@ -185,7 +182,6 @@ LONDON	NNP	B-NP	B-LOC
           No stopword removal or stemming/lemmatization was applied. Also no special characters were removed yet.
           This might be done in later assignments.
 
-    \item[] \textit{Assignment 2} update (if applicable)
     \item[] \textit{Assignment 3} update (if applicable)
 \end{itemize}
 
@@ -221,6 +217,7 @@ LONDON	NNP	B-NP	B-LOC
 
           Naive Bayes is a probabilistic classifier based on Bayes' theorem, which assumes independence between features.
           It is computationally efficient and works well for text classification tasks, especially when the feature space is large.
+          To use the sparse features effectively, a Bernoulli Naive Bayes (BernoulliNB) variant was chosen, because it is designed to handle binary/boolean features and copes well with one-hot encoded features.
           The NB model was also implemented using the sklearn library with default parameters.
 
     \item[]\textit{Assignment 3} More advanced models (fine-tuning BERT, CRF for ReMA students only)
@@ -236,12 +233,15 @@ LONDON	NNP	B-NP	B-LOC
               \item Token itself: The actual word provides crucial semantic information. Certain words are more likely to be part of specific entity types (e.g., "Inc." often indicates an organization).
               \item POS tags: Part-of-speech information helps identify potential named entities. For instance, proper nouns (NNP) are often good candidates for named entities.
               \item Capitalization: In English, this is a strong indicator for named entities, as proper nouns are typically capitalized. It helps distinguish between common nouns and potential named entities, though it can be less reliable at the beginning of sentences.
+              \item Previous POS tag: POS tags order matter for the current token's POS tag, which matters for the NER label
+              \item Presence of digits: Tokens containing digits are often part of named entities, such as dates, times, or numerical identifiers.
+              \item Position in the sentence: The position of a token in the sentence can provide context for its meaning and help disambiguate its role in the entity.
           \end{itemize}
           These features provide complementary information that aids in identifying and classifying named entities.
           The token itself carries semantic content, POS tags offer syntactic clues, and capitalization provides orthographic hints that are particularly useful for recognizing proper nouns.
+          The previous POS tag adds contextual information, while the presence of digits and position in the sentence help capture specific patterns associated with named entities.
 
-          The distribution of all these features can be found in the \ref{sec:linguistic_features}.
-    \item[] \textit{Assignment 2} More features
+          The distribution of the first three features can be found in the \ref{sec:linguistic_features}.
     \item[] \textit{Assignment 3} More advanced features
 \end{itemize}
 
@@ -254,45 +254,50 @@ LONDON	NNP	B-NP	B-LOC
 \subsection{Evaluation}
 
 \begin{itemize}
-    \item [] \textit{Assignment 1}: first results
-          The first results of the basic system on the development set are shown in figure \ref{tab:classification_report} and the confusion matrix \ref{fig:confusion_matrix_log}.
-          \begin{table}[htbp]
+    \item [] Results updated
+          The updated results of the basic system on the development set are shown in figure \ref{tab:evaluation report logreg} and the confusion matrix \ref{fig:confusion_matrix_logreg}.
+          \begin{table}[h!]
               \centering
-              \begin{tabular}{|r|c|c|c|c|}
-                  \hline
-                  \textbf{Label}        & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
-                  \hline
-                  B-LOC                 & 0.870              & 0.746           & 0.803             & 1837             \\
-                  B-MISC                & 0.782              & 0.713           & 0.746             & 922              \\
-                  B-ORG                 & 0.772              & 0.650           & 0.706             & 1341             \\
-                  B-PER                 & 0.480              & 0.839           & 0.611             & 1842             \\
-                  I-LOC                 & 0.758              & 0.525           & 0.621             & 257              \\
-                  I-MISC                & 0.836              & 0.457           & 0.591             & 346              \\
-                  I-ORG                 & 0.640              & 0.465           & 0.539             & 751              \\
-                  I-PER                 & 0.724              & 0.405           & 0.519             & 1307             \\
-                  O                     & 0.989              & 0.993           & 0.991             & 42759            \\
-                  \hline
-                  \textbf{Accuracy}     &                    &                 & 0.936             & 51362            \\
-                  \textbf{Macro avg}    & 0.761              & 0.644           & 0.681             & 51362            \\
-                  \textbf{Weighted avg} & 0.943              & 0.936           & 0.936             & 51362            \\
-                  \hline
+              \caption{NER classification report for Logistic Regression}
+              \label{tab:evaluation report logreg}
+              \begin{tabular}{l rrrr}
+                  \toprule
+                  \textbf{Tag}          & \textbf{Prec.}       & \textbf{Rec.} & \textbf{F1} & \textbf{support} \\
+                  \midrule
+                  B-LOC                 & 0.853                & 0.846         & 0.850       & 1837             \\
+                  B-MISC                & 0.907                & 0.747         & 0.819       & 922              \\
+                  B-ORG                 & 0.713                & 0.775         & 0.743       & 1341             \\
+                  B-PER                 & 0.920                & 0.680         & 0.782       & 1842             \\
+                  I-LOC                 & 0.778                & 0.708         & 0.741       & 257              \\
+                  I-MISC                & 0.800                & 0.613         & 0.694       & 346              \\
+                  I-ORG                 & 0.779                & 0.565         & 0.655       & 751              \\
+                  I-PER                 & 0.777                & 0.930         & 0.847       & 1307             \\
+                  O                     & 0.982                & 0.996         & 0.989       & 42759            \\
+                  \midrule
+                  \textbf{accuracy}     & \multicolumn{2}{c}{} & 0.957         & 51362                          \\
+                  \textbf{macro avg}    & 0.834                & 0.762         & 0.791       & 51362            \\
+                  \textbf{weighted avg} & 0.956                & 0.957         & 0.955       & 51362            \\
+                  \bottomrule
               \end{tabular}
-              \caption{Classification report with precision, recall, f1-score, and support for each label.}
-              \label{tab:classification_report}
           \end{table}
 
-          \begin{figure}[htbp]
+          \begin{figure}
               \centering
-              \includegraphics[width=0.95\linewidth]{figures/confusion_matrix_log.png}
-              \caption{Confusion matrix of the Logistic Regression model on the development set.}
-              \label{fig:confusion_matrix_log}
+              \includegraphics[width=0.95\linewidth]{../assignment2/figures/confusion_matrix_normalized_logreg.png}
+              \caption{Confusion matrix for Logistic Regression model.}
+              \label{fig:confusion_matrix_logreg}
           \end{figure}
-          As can be seen, the model performs best on the B-LOC label with a 0.99 accuracy.
-          The model struggles the most with the B-ORG label, with an accuracy of 0.40.
-          The largest confusion happens between B-ORG that gets predicted as B-PER a lot.
-          The macro precision is 0.761 and the macro recall is 0.644. The accuracy is with 0.936 quite high already.
+          The results of SVM and NB on the development set are shown in figure \ref{tab:evaluation report SVM} and \ref{tab:evaluation report Naive Bayes} as well as the confusion matrices \ref{fig:confusion_matrix_SVM} and \ref{fig:confusion_matrix_NB}.
 
-    \item [] \textit{Assignment 2}: update
+          An interesting observation is that the "O" label gets predicted very well by all models, with precision and recall values above 0.96.
+          This is likely due to the high frequency of the "O" label in the dataset, making it easier for the models to learn to predict it accurately.
+          On the other hand, labels like I-LOC and I-MISC have very low precision and recall across all models, indicating that these labels are more challenging to predict accurately.
+          This could be due to the lower frequency of these labels in the dataset, making it harder for the models to learn their patterns.
+
+          Naive Bayes is very bad in the I-MISC and I-LOC labels, since it never predicts them.
+          Logistic Regression performs best overall, with the highest accuracy (0.957), followed by Naive Bayes (0.912) and SVM (0.893).
+
+
     \item [] \textit{Assignment 3}: update
 \end{itemize}
 
@@ -447,10 +452,13 @@ The system's success is therefore entirely dependent on the quality of the initi
             2     & Did all the week 2 tasks for assignment 1              & 2 hours    \\
             2     & Incorporated the feedback for assignment 1             & 1.5 hours  \\
             3     & Worked on the theoretical step of assignment 2         & 1 hour     \\
-            3     & Did a brief literature study for easy features         & 1.5 hours  \\
+            3     & Did a brief literature study for efficient features    & 1.5 hours  \\
             3     & Implemented the features from the literature study     & 2.5 hours  \\
+            3     & Trained the models SVM and NB                          & 1.5 hours  \\
+            3     & Evaluated the models and created confusion matrices    & 1.5 hours  \\
+            3     & Updated the report for assignment 2                    & 2 hours    \\
             \midrule
-            Total & 15h                                                                 \\
+            Total & 20 hours                                                            \\
 
             \bottomrule
         \end{tabular}
@@ -629,7 +637,7 @@ In the notebook, I already implemented this evaluation function.
 After conducting a literature study on easy-to-implement features for NER, I found several features that could potentially improve the performance of our NER model.
 These features include:
 \begin{itemize}
-    \item previous predicted label
+    \item previous POS tag
     \item presence of digits
     \item position in the sentence
 \end{itemize}
@@ -641,6 +649,83 @@ In \cite{Nadeau2007ASO}, the authors discuss various features for NER, including
 The table on page 8 in the paper shows several word-level features like the presence of digit and the position of the token in the sentence.
 
 I implemented the features above in the code and will evaluate their impact on the model's performance in the next section.
+
+\subsubsection*{Results of new features}
+In this section, I will present the results of incorporating the new features identified from the literature study into our NER model.
+I used logistic regression, SVM and Naive Bayes as classifiers to evaluate the impact of these features on model performance.
+The results are summarized in the following tables and confusion matrices: \ref{tab:evaluation report logreg}, \ref{fig:confusion_matrix_logreg}, \ref{tab:evaluation report SVM}, \ref{fig:confusion_matrix_SVM}, \ref{tab:evaluation report Naive Bayes}, and \ref{fig:confusion_matrix_NB}.
+
+\begin{table}[h!]
+    \centering
+    \caption{NER classification report for SVM}
+    \label{tab:evaluation report SVM}
+    \begin{tabular}{l rrrr}
+        \toprule
+        \textbf{Tag}          & \textbf{precision}   & \textbf{recall} & \textbf{f1-score} & \textbf{support} \\
+        \midrule
+        B-LOC                 & 0.540                & 0.469           & 0.502             & 1837             \\
+        B-MISC                & 0.658                & 0.482           & 0.556             & 922              \\
+        B-ORG                 & 0.322                & 0.406           & 0.359             & 1341             \\
+        B-PER                 & 0.489                & 0.558           & 0.521             & 1842             \\
+        I-LOC                 & 0.000                & 0.000           & 0.000             & 257              \\
+        I-MISC                & 0.000                & 0.000           & 0.000             & 346              \\
+        I-ORG                 & 0.307                & 0.105           & 0.157             & 751              \\
+        I-PER                 & 0.453                & 0.826           & 0.585             & 1307             \\
+        O                     & 0.980                & 0.978           & 0.979             & 42759            \\
+        \midrule
+        \textbf{accuracy}     & \multicolumn{2}{c}{} & 0.893           & 51362                                \\
+        \textbf{macro avg}    & 0.417                & 0.425           & 0.407             & 51362            \\
+        \textbf{weighted avg} & 0.889                & 0.893           & 0.888             & 51362            \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_SVM.png}
+    \caption{Confusion matrix for SVM model.}
+    \label{fig:confusion_matrix_SVM}
+\end{figure}
+
+
+\begin{table}[h!]
+    \centering
+    \caption{NER classification report for Naive Bayes}
+    \label{tab:evaluation report Naive Bayes}
+    \begin{tabular}{l rrrr}
+        \toprule
+        \textbf{Tag}          & \textbf{precision}   & \textbf{recall} & \textbf{f1-score} & \textbf{support} \\
+        \midrule
+        B-LOC                 & 0.562                & 0.848           & 0.676             & 1837             \\
+        B-MISC                & 0.888                & 0.456           & 0.602             & 922              \\
+        B-ORG                 & 0.433                & 0.666           & 0.525             & 1341             \\
+        B-PER                 & 0.732                & 0.736           & 0.734             & 1842             \\
+        I-LOC                 & 0.000                & 0.000           & 0.000             & 257              \\
+        I-MISC                & 0.000                & 0.000           & 0.000             & 346              \\
+        I-ORG                 & 0.733                & 0.344           & 0.468             & 751              \\
+        I-PER                 & 0.536                & 0.913           & 0.676             & 1307             \\
+        O                     & 0.989                & 0.963           & 0.976             & 42759            \\
+        \midrule
+        \textbf{accuracy}     & \multicolumn{2}{c}{} & 0.912           & 51362                                \\
+        \textbf{macro avg}    & 0.541                & 0.547           & 0.517             & 51362            \\
+        \textbf{weighted avg} & 0.921                & 0.912           & 0.911             & 51362            \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_NB.png}
+    \caption{Confusion matrix for Naive Bayes model.}
+    \label{fig:confusion_matrix_NB}
+\end{figure}
+
+An interesting observation is that the "O" label gets predicted very well by all models, with precision and recall values above 0.96.
+This is likely due to the high frequency of the "O" label in the dataset, making it easier for the models to learn to predict it accurately.
+On the other hand, labels like I-LOC and I-MISC have very low precision and recall across all models, indicating that these labels are more challenging to predict accurately.
+This could be due to the lower frequency of these labels in the dataset, making it harder for the models to learn their patterns.
+
+Naive Bayes is very bad in the I-MISC and I-LOC labels, since it never predicts them.
+Logistic Regression performs best overall, with the highest accuracy (0.957), followed by Naive Bayes (0.912) and SVM (0.893).
+
 
 
 \end{document}

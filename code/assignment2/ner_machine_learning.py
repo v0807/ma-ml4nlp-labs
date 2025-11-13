@@ -66,11 +66,11 @@ def extract_features_and_labels(trainingfile):
                 data.append(feature_dict)
                 sentence_position += 1
                 previous_POS = components[1] #put the current POS as previous POS for the next token
-                targets.append(components[-1])
+                targets.append(components[-1]) # gold NER-label is in the last column
             else:
                 sentence_position = 0
                 previous_POS = None
-                # gold NER-label is in the last column
+                
             
     return data, targets
     
@@ -91,7 +91,7 @@ def extract_features(inputfile):
             components = line.rstrip('\n').split()
             if len(components) > 0:
                 token = components[0]
-                feature_dict = {'token':token, 'POS':components[1], 'case': 'uppercase' if token[0].isupper() else 'lowercase', 'contains_digits': any(char.isdigit() for char in token), 'position_in_sentence': sentence_position, 'previous_POS': previous_POS if previous_POS is not None else 'BOS'}
+                feature_dict = {'token':token, 'POS':components[1], 'case': 'uppercase' if token[0].isupper() else 'lowercase', 'contains_digits': any(char.isdigit() for char in token), 'position_in_sentence': sentence_position, 'previous_POS': previous_POS if previous_POS is not None else 'BOS', }
                 data.append(feature_dict)
                 sentence_position += 1
                 previous_POS = components[1] #put the current POS as previous POS for the next token
@@ -140,7 +140,7 @@ def create_classifier(train_features, train_targets, modelname):
         features_vectorized = vec.fit_transform(train_features)
         
         print("Training Bernoulli Naive Bayes model...")
-        # BernoulliNB can handle sparse matrices directly
+        # BernoulliNB can handle sparse matrices without memory problems
         model = nb.fit(features_vectorized, train_targets)
         print("Bernoulli Naive Bayes training completed")
         
@@ -161,7 +161,7 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
     """
     features = extract_features(inputdata)
     features = vec.transform(features)
-    predictions = model.predict(features)  # BernoulliNB can handle sparse matrices directly
+    predictions = model.predict(features) 
     outfile = open(outputfile, 'w')
     counter = 0
     for line in open(inputdata, 'r'):
@@ -170,8 +170,8 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
             counter += 1
     outfile.close()
 
-def create_and_save_models(training_features, gold_labels):
-    for modelname in ['NB']: #NB asks for too much memory on the test machine
+def create_and_save_models(training_features, gold_labels, modelnames=None):
+    for modelname in modelnames:
             ml_model, vec, scaler = create_classifier(training_features, gold_labels, modelname)
             print(f"model and vec created for {modelname}")
             with open(f"{modelname}_ner_model.pkl", "wb") as f:
@@ -266,13 +266,15 @@ def main(argv=None):
     inputfile = argv[2]
     outputfile = argv[3]
     
+    #Alter this to experiment with other models
+    models = ['logreg', 'SVM', 'NB' ] #logreg, SVM, NB
     
     training_features, gold_labels = extract_features_and_labels(trainingfile)
-    create_and_save_models(training_features, gold_labels)
-    open_models_and_classify(inputfile, outputfile, ['NB']) #logreg, SVM, NB
+    create_and_save_models(training_features, gold_labels, models)
+    open_models_and_classify(inputfile, outputfile, models) 
 
-    for model in ['NB']: #logreg, SVM, NB
-    
+    # Evaluate each model
+    for model in models:     
         with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
             pred_lines = f.readlines()
             pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
