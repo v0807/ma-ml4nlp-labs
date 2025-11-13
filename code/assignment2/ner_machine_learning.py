@@ -9,6 +9,8 @@ from sklearn.naive_bayes import GaussianNB
 import numpy as np
 from scipy import sparse
 import pickle
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import matplotlib.pyplot as plt
 
 
 
@@ -133,11 +135,31 @@ def create_classifier(train_features, train_targets, modelname):
 
     if modelname == 'NB':
         nb = GaussianNB()
-        vec = DictVectorizer()
-        features_vectorized = vec.fit_transform(train_features).toarray()
-        model = nb.fit(features_vectorized, train_targets)
+        vec = DictVectorizer(sparse=True)  # Keep sparse to save memory
+        features_vectorized = vec.fit_transform(train_features)
+        
+        # Add scaling like in LogisticRegression
+        scaler = StandardScaler(with_mean=False)  # Keep with_mean=False for sparse
+        features_scaled = scaler.fit_transform(features_vectorized)
+        
+        # Process data in smaller batches to avoid memory issues
+        batch_size = 1000  # Reduced batch size
+        print("Training Naive Bayes model in batches...")
+        for i in range(0, features_scaled.shape[0], batch_size):
+            end_idx = min(i + batch_size, features_scaled.shape[0])
+            batch_features = features_scaled[i:end_idx].toarray()  # Convert only the batch to dense
+            if i == 0:
+                model = nb.partial_fit(batch_features, train_targets[i:end_idx],
+                                     classes=np.unique(train_targets))
+            else:
+                model = nb.partial_fit(batch_features, train_targets[i:end_idx])
+            if i % 10000 == 0:
+                print(f"Processed {i}/{features_scaled.shape[0]} samples...")
+        print("Naive Bayes training completed")
+        
+        return model, vec, scaler
 
-    return model, vec, scaler if modelname == 'logreg' else None
+    return model, vec, scaler if modelname in ['logreg', 'NB'] else None
 
     
 def classify_data(model, vec, scaler, inputdata, outputfile):
@@ -153,8 +175,19 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
     """
     features = extract_features(inputdata)
     features = vec.transform(features)
-    features = scaler.transform(features)
-    predictions = model.predict(features)
+    
+    if scaler is not None:
+        features = scaler.transform(features)
+    
+    # For prediction, also process in batches
+    predictions = []
+    batch_size = 1000
+    for i in range(0, features.shape[0], batch_size):
+        end_idx = min(i + batch_size, features.shape[0])
+        batch_features = features[i:end_idx].toarray()  # Convert only the batch to dense
+        batch_predictions = model.predict(batch_features)
+        predictions.extend(batch_predictions)
+    predictions = np.array(predictions)
     outfile = open(outputfile, 'w')
     counter = 0
     for line in open(inputdata, 'r'):
@@ -163,6 +196,76 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
             counter += 1
     outfile.close()
 
+def create_and_save_models(training_features, gold_labels):
+    for modelname in ['NB']: #NB asks for too much memory on the test machine
+            ml_model, vec, scaler = create_classifier(training_features, gold_labels, modelname)
+            print(f"model and vec created for {modelname}")
+            with open(f"{modelname}_ner_model.pkl", "wb") as f:
+                pickle.dump(ml_model, f)
+            with open(f"{modelname}_vec.pkl", "wb") as f:
+                pickle.dump(vec, f)
+            if scaler is not None:
+                with open(f"{modelname}_scaler.pkl", "wb") as f:
+                    pickle.dump(scaler, f)
+
+def open_models_and_classify(inputfile, outputfile, modelnames):
+
+    for modelname in modelnames:
+        print(f"start classifying with model: {modelname}")
+
+        if modelname == 'logreg':
+                with open("logreg_ner_model.pkl", "rb") as f:
+                    ml_model = pickle.load(f)
+                with open("logreg_vec.pkl", "rb") as f:
+                    vec = pickle.load(f)
+                with open("logreg_scaler.pkl", "rb") as f:
+                    scaler = pickle.load(f)
+                classify_data(ml_model, vec, scaler, inputfile, outputfile.replace('.conll','.' + modelname + '.conll'))
+        if modelname == 'SVM':
+            with open("SVM_ner_model.pkl", "rb") as f:
+                ml_model = pickle.load(f)
+            with open("SVM_vec.pkl", "rb") as f:
+                vec = pickle.load(f)
+                classify_data(ml_model, vec, None, inputfile, outputfile.replace('.conll','.' + modelname + '.conll'))
+
+        if modelname == 'NB':
+            with open("NB_ner_model.pkl", "rb") as f:
+                ml_model = pickle.load(f)
+            with open("NB_vec.pkl", "rb") as f:
+                vec = pickle.load(f)
+            classify_data(ml_model, vec, None, inputfile, outputfile.replace('.conll','.' + modelname + '.conll'))
+        
+        print("Done classifying with model:", modelname)
+
+def evaluate_ner(gold_labels, pred_labels, modelname): # copied and altered from A1
+    report = classification_report(gold_labels, pred_labels, digits=3)
+    print(report)
+    plt.figure(figsize=(12, 10))
+    plt.rcParams.update({'font.size': 14})
+
+    # Normalized confusion matrix
+    print("Normalized:")
+    cm = confusion_matrix(gold_labels, pred_labels, normalize='true')
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=set(gold_labels))
+    disp.plot(values_format='.2f', cmap='gray_r', ax=plt.gca())
+    plt.title("Normalized Confusion Matrix", fontsize=22)
+    plt.xlabel("Predicted Label", fontsize=20)
+    plt.ylabel("True Label", fontsize=20)
+    plt.savefig(f'figures/confusion_matrix_normalized_{modelname}.png')
+    plt.show()
+    
+
+    # Not normalized confusion matrix
+    plt.figure(figsize=(12, 10))
+    print("Not normalized:")
+    cm = confusion_matrix(gold_labels, pred_labels)
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=set(gold_labels))
+    disp.plot(values_format='d', cmap='gray_r', ax=plt.gca())
+    plt.title("Confusion Matrix", fontsize=22)
+    plt.xlabel("Predicted Label", fontsize=20)
+    plt.ylabel("True Label", fontsize=20)
+    plt.savefig(f'figures/confusion_matrix_{modelname}.png')
+    plt.show()
 
 
 def main(argv=None):
@@ -189,28 +292,25 @@ def main(argv=None):
     inputfile = argv[2]
     outputfile = argv[3]
     
+    
+    training_features, gold_labels = extract_features_and_labels(trainingfile)
+    create_and_save_models(training_features, gold_labels)
+    open_models_and_classify(inputfile, outputfile, ['NB']) #logreg, SVM, NB
+
+    for model in ['NB']: #logreg, SVM, NB
+    
+        with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
+            pred_lines = f.readlines()
+            pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
+            gold_labels = [line.split()[-2] for line in pred_lines if line.strip()]
+        print(f"Evaluation for model: {model}")
+
+        evaluate_ner(gold_labels, pred_labels, model)
+    
+    
     ## for the word_embedding_model used in the `extract_embeddings_as_features_and_gold' you can either choose to use a statement like this:
     # language_model = gensim.models.KeyedVectors.load_word2vec_format('../../models/GoogleNews-vectors-negative300.bin.gz', binary=True)
     ## and make sure the path works correctly, or you can add an argument to the commandline that allows users to specify the location of the language model.
-    
-    training_features, gold_labels = extract_features_and_labels(trainingfile)
-    for modelname in ['logreg', 'SVM']: #NB asks for too much memory on the test machine
-        ml_model, vec, scaler = create_classifier(training_features, gold_labels, modelname)
-        print(f"model and vec created for {modelname}")
-        with open(f"{modelname}_ner_model.pkl", "wb") as f:
-            pickle.dump(ml_model, f)
-        with open(f"{modelname}_vec.pkl", "wb") as f:
-            pickle.dump(vec, f)
-        if scaler is not None:
-            with open(f"{modelname}_scaler.pkl", "wb") as f:
-                pickle.dump(scaler, f)
-
-        if modelname == 'logreg':
-            classify_data(ml_model, vec, scaler, inputfile, outputfile.replace('.conll','.' + modelname + '.conll'))
-        else:
-            classify_data(ml_model, vec, None, inputfile, outputfile.replace('.conll','.' + modelname + '.conll'))
-        print("Done classifying with model:", modelname)
-    
     
 if __name__ == '__main__':
     main()
