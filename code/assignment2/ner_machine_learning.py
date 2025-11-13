@@ -5,7 +5,7 @@ import pandas as pd
 import sys
 import csv
 from sklearn.svm import SVC
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import BernoulliNB
 import numpy as np
 from scipy import sparse
 import pickle
@@ -134,32 +134,18 @@ def create_classifier(train_features, train_targets, modelname):
         print("SVM training completed")
 
     if modelname == 'NB':
-        nb = GaussianNB()
-        vec = DictVectorizer(sparse=True)  # Keep sparse to save memory
+        print("Creating Bernoulli Naive Bayes model...")
+        nb = BernoulliNB()
+        vec = DictVectorizer(sparse=True)
         features_vectorized = vec.fit_transform(train_features)
         
-        # Add scaling like in LogisticRegression
-        scaler = StandardScaler(with_mean=False)  # Keep with_mean=False for sparse
-        features_scaled = scaler.fit_transform(features_vectorized)
+        print("Training Bernoulli Naive Bayes model...")
+        # BernoulliNB can handle sparse matrices directly
+        model = nb.fit(features_vectorized, train_targets)
+        print("Bernoulli Naive Bayes training completed")
         
-        # Process data in smaller batches to avoid memory issues
-        batch_size = 1000  # Reduced batch size
-        print("Training Naive Bayes model in batches...")
-        for i in range(0, features_scaled.shape[0], batch_size):
-            end_idx = min(i + batch_size, features_scaled.shape[0])
-            batch_features = features_scaled[i:end_idx].toarray()  # Convert only the batch to dense
-            if i == 0:
-                model = nb.partial_fit(batch_features, train_targets[i:end_idx],
-                                     classes=np.unique(train_targets))
-            else:
-                model = nb.partial_fit(batch_features, train_targets[i:end_idx])
-            if i % 10000 == 0:
-                print(f"Processed {i}/{features_scaled.shape[0]} samples...")
-        print("Naive Bayes training completed")
         
-        return model, vec, scaler
-
-    return model, vec, scaler if modelname in ['logreg', 'NB'] else None
+    return model, vec, scaler if modelname in ['logreg'] else None
 
     
 def classify_data(model, vec, scaler, inputdata, outputfile):
@@ -175,19 +161,7 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
     """
     features = extract_features(inputdata)
     features = vec.transform(features)
-    
-    if scaler is not None:
-        features = scaler.transform(features)
-    
-    # For prediction, also process in batches
-    predictions = []
-    batch_size = 1000
-    for i in range(0, features.shape[0], batch_size):
-        end_idx = min(i + batch_size, features.shape[0])
-        batch_features = features[i:end_idx].toarray()  # Convert only the batch to dense
-        batch_predictions = model.predict(batch_features)
-        predictions.extend(batch_predictions)
-    predictions = np.array(predictions)
+    predictions = model.predict(features)  # BernoulliNB can handle sparse matrices directly
     outfile = open(outputfile, 'w')
     counter = 0
     for line in open(inputdata, 'r'):
