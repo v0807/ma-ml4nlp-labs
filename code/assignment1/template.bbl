@@ -1,9 +1,32 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{4}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Nadeau and Sekine(2007)}]{Nadeau2007ASO}
+David Nadeau and Satoshi Sekine. 2007.
+\newblock \href {https://api.semanticscholar.org/CorpusID:8310135} {A survey of
+  named entity recognition and classification}.
+\newblock \emph{Lingvisticae Investigationes}, 30:3--26.
+
+\bibitem[{Nakov et~al.(2019)Nakov, Kozareva, Ritter, Rosenthal, Stoyanov, and
+  Wilson}]{DBLP:journals/corr/abs-1912-06806}
+Preslav Nakov, Zornitsa Kozareva, Alan Ritter, Sara Rosenthal, Veselin
+  Stoyanov, and Theresa Wilson. 2019.
+\newblock \href {http://arxiv.org/abs/1912.06806} {Semeval-2013 task 2:
+  Sentiment analysis in twitter}.
+\newblock \emph{CoRR}, abs/1912.06806.
 
 \bibitem[{Sang and Meulder(2003)}]{sang2003introductionconll2003sharedtask}
 Erik F. Tjong~Kim Sang and Fien~De Meulder. 2003.
 \newblock \href {http://arxiv.org/abs/cs/0306050} {Introduction to the
   conll-2003 shared task: Language-independent named entity recognition}.
+
+\bibitem[{Warto et~al.(2024)Warto, Rustad, Shidik, Noersasongko, Purwanto,
+  Muljono, and Setiadi}]{Warto2024SystematicLR}
+Warto, Supriadi Rustad, Guruh~Fajar Shidik, Edi Noersasongko, Purwanto,
+  Muljono, and De~Rosal Ignatius~Moses Setiadi. 2024.
+\newblock \href {https://api.semanticscholar.org/CorpusID:270347533}
+  {Systematic literature review on named entity recognition: Approach, method,
+  and application}.
+\newblock \emph{Statistics, Optimization \& Information Computing}.
 
 \end{thebibliography}

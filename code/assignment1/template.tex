@@ -154,14 +154,14 @@ LONDON	NNP	B-NP	B-LOC
           The least represented named entity label is I-MISC together with I-LOC. They only have 1155 and 1157 occurrences respectively in the training set.
           \begin{figure}[htbp]
               \centering
-              \includegraphics[width=0.7\linewidth]{figures/label_distribution.png}
+              \includegraphics[width=0.95\linewidth]{figures/label_distribution.png}
               \caption{Label distribution in the CoNLL training set.}
               \label{fig:label_distribution}
           \end{figure}
 
           \begin{figure}[htbp]
               \centering
-              \includegraphics[width=0.7\linewidth]{figures/label_distribution_without_o.png}
+              \includegraphics[width=0.95\linewidth]{figures/label_distribution_without_o.png}
               \caption{Label distribution in the CoNLL training set (excluding "O").}
               \label{fig:label_distribution_without_O}
           \end{figure}
@@ -214,7 +214,15 @@ LONDON	NNP	B-NP	B-LOC
           The model coefficients represent the importance of each feature for each class.
           The model was trained using the default parameters from sklearn on the training set.
 
-    \item[]\textit{Assignment 2} Alternative Methods (SVM, NB)
+    \item[]\textit{Assignment 2} Alternative Methods (SVM, NB) The models that were used in addition to Logistic Regression are Support Vector Machines (SVM) and Naive Bayes (NB).
+          SVM is a powerful classification algorithm that works by finding the optimal hyperplane that separates different classes in the feature space.
+          It is particularly effective for high-dimensional data and can handle non-linear decision boundaries using kernel functions.
+          In this assignment, the SVM model was implemented using the sklearn library with default parameters.
+
+          Naive Bayes is a probabilistic classifier based on Bayes' theorem, which assumes independence between features.
+          It is computationally efficient and works well for text classification tasks, especially when the feature space is large.
+          The NB model was also implemented using the sklearn library with default parameters.
+
     \item[]\textit{Assignment 3} More advanced models (fine-tuning BERT, CRF for ReMA students only)
 \end{itemize}
 
@@ -247,16 +255,35 @@ LONDON	NNP	B-NP	B-LOC
 
 \begin{itemize}
     \item [] \textit{Assignment 1}: first results
-          The first results of the basic system on the development set are shown in figure \ref{fig:log_results} and the confusion matrix \ref{fig:confusion_matrix_log}.
+          The first results of the basic system on the development set are shown in figure \ref{tab:classification_report} and the confusion matrix \ref{fig:confusion_matrix_log}.
+          \begin{table}[htbp]
+              \centering
+              \begin{tabular}{|r|c|c|c|c|}
+                  \hline
+                  \textbf{Label}        & \textbf{Precision} & \textbf{Recall} & \textbf{F1-score} & \textbf{Support} \\
+                  \hline
+                  B-LOC                 & 0.870              & 0.746           & 0.803             & 1837             \\
+                  B-MISC                & 0.782              & 0.713           & 0.746             & 922              \\
+                  B-ORG                 & 0.772              & 0.650           & 0.706             & 1341             \\
+                  B-PER                 & 0.480              & 0.839           & 0.611             & 1842             \\
+                  I-LOC                 & 0.758              & 0.525           & 0.621             & 257              \\
+                  I-MISC                & 0.836              & 0.457           & 0.591             & 346              \\
+                  I-ORG                 & 0.640              & 0.465           & 0.539             & 751              \\
+                  I-PER                 & 0.724              & 0.405           & 0.519             & 1307             \\
+                  O                     & 0.989              & 0.993           & 0.991             & 42759            \\
+                  \hline
+                  \textbf{Accuracy}     &                    &                 & 0.936             & 51362            \\
+                  \textbf{Macro avg}    & 0.761              & 0.644           & 0.681             & 51362            \\
+                  \textbf{Weighted avg} & 0.943              & 0.936           & 0.936             & 51362            \\
+                  \hline
+              \end{tabular}
+              \caption{Classification report with precision, recall, f1-score, and support for each label.}
+              \label{tab:classification_report}
+          \end{table}
+
           \begin{figure}[htbp]
               \centering
-              \includegraphics[width=0.7\linewidth]{figures/results_log.png}
-              \caption{Results of the Logistic Regression model on the development set.}
-              \label{fig:log_results}
-          \end{figure}
-          \begin{figure}[htbp]
-              \centering
-              \includegraphics[width=0.7\linewidth]{figures/confusion_matrix_log.png}
+              \includegraphics[width=0.95\linewidth]{figures/confusion_matrix_log.png}
               \caption{Confusion matrix of the Logistic Regression model on the development set.}
               \label{fig:confusion_matrix_log}
           \end{figure}
@@ -314,7 +341,7 @@ LONDON	NNP	B-NP	B-LOC
 \clearpage
 
 
-\appendix
+
 
 \section*{Theoretical Component}
 
@@ -352,9 +379,51 @@ The evaluation is typically done on a separate dataset that was not used during 
 A golden testset is a testset that is carefully curated and annotated by experts to ensure high quality and reliability.
 
 \subsection*{Assignment 2}
+\subsubsection*{1.A.1: Task definition}
+A task definition of Subtask B \cite{DBLP:journals/corr/abs-1912-06806} with regards to input and desired output can be formulated as follows.
+Create a system that, given a message (single, unprocessed text message) from Twitter as input, decide the dominant sentiment from positive, negative, or neutral.
+For messages conveying both a positive and a negative sentiment, whichever is the stronger one was to be chosen.
+If no clear sentiment is present, neutral should be chosen.
+The output of the system are the predicted sentiment labels corresponding to the input messages.
 
+\subsubsection*{1.A.2: Key Features for Sentiment Analysis in Tweets}
+
+To successfully determine the overall sentiment (positive, negative, or neutral) of a social media message, a system can rely on several types of numerical features that capture both the literal meaning of the words and the highly expressive style of online communication.
+The most fundamental features come from sentiment lexicons and N-grams.
+Lexicon-based features involve simply counting how many words in the tweet are listed in pre-compiled dictionaries as inherently positive (like "awesome") or negative (like "terrible").
+This gives the system a strong initial signal of the message's overall leanings.
+N-grams, on the other hand, look at sequences of words (like "not nice" or "hate it") to capture context.
+This is crucial for recognizing phrases where one word negates the sentiment of another, ensuring the system doesn't misclassify "not nice" as a positive expression.
+
+Beyond the words themselves, social media posts frequently use special elements to intensify emotion.
+Features that track punctuation and emoticons can be highly valuable.
+Users often signal strong feelings using multiple exclamation points ("!!!") or specific emoticons like ":D" for joy or ":(" for sadness.
+Similarly, elongation and capitalization act as indicators of emphasis or anger.
+For example, a system can easily detect heightened emotion when a word is spelled with repeated letters ("sooo") or written entirely in capital letters ("SO ANGRY").
+
+Finally, the system should incorporate features specific to the social media platforms. These can be hashtags or @-symbols that indicate towards which named entity the message is directed.
+
+\subsubsection*{1.A.3: Feature representations}
+
+For sentiment analysis to get the desired outputs it starts by converting a text message into a Feature Vector ($\mathbf{x}$) within a Vector Space Model (VSM).
+The system first defines a large vocabulary of possible features, such as specific unigrams, the bigram "not nice," or the binary feature Has Positive Emoticon.
+Every message is then represented by an array of numbers where each component, $x_j$, records the magnitude or presence (e.g., count or a binary 1/0) of the corresponding feature $j$ in that specific Tweet.
+For capitalization it would be usefull to look at the ratio of capitalized words compared to not capitalized. This would also be a numerical representation.
+Important, the computer system sees only will see a high-dimensional, probably sparse (mostly zero-filled), numerical vector, not the human-readable text.
+The machine learning classifier, such as a Support Vector Machine (SVM), then utilizes these vectors to learn sentiment.
+During training, the classifier assigns a weight ($w_j$) to every feature $j$, with the weight indicating the feature's predictive power.
+For instance, the feature Count of Positive Words will receive a high positive weight, while the feature Bigram: "not nice" will receive a significant negative weight, reflecting its counter-intuitive sentiment.
+When classifying a new, unseen message, the system calculates a score by taking the linear combination of the feature vector and the learned weights, $\text{Score} = \sum_{j} w_j x_j$.
+This numerical score is then compared against established thresholds to assign the final class (positive, negative, or neutral).
+This mechanism reveals the core difference between human and machine perception.
+The human uses linguistic insight to understand the message's meaning, context, and intent (e.g., "This message is positive because the word 'brilliant' is a strong compliment").
+In contrast, the computer only performs mathematical algebra on the numbers, learning that the presence of the feature associated with "brilliant" has a specific high positive weight, which pushes the aggregate score above the positive threshold.
+The system's success is therefore entirely dependent on the quality of the initial human-engineered features that capture the necessary linguistic cues, so this part of the assignment is very important to me.
 
 \subsection*{Assignment 3}
+
+
+
 
 
 
@@ -375,15 +444,24 @@ A golden testset is a testset that is carefully curated and annotated by experts
             1     & Work on 2.2.1 further exploration of the data          & 1 hour     \\
             1     & Work on 2.2.2 feature hypothesis                       & 1 hour     \\
             1     & Started with 3.1, description of precision, recall etc & 0.5 hour   \\
-            1     & Did all the week 2 tasks for assignment 1              & 2 hours    \\
-            1     & Incorporated the feedback for assignment 1             & 1.5 hours  \\
+            2     & Did all the week 2 tasks for assignment 1              & 2 hours    \\
+            2     & Incorporated the feedback for assignment 1             & 1.5 hours  \\
+            3     & Worked on the theoretical step of assignment 2         & 1 hour     \\
+            3     & Did a brief literature study for easy features         & 1.5 hours  \\
+            3     & Implemented the features from the literature study     & 2.5 hours  \\
             \midrule
-            Total & 10h                                                                 \\
+            Total & 15h                                                                 \\
 
             \bottomrule
         \end{tabular}
         \caption{Time overview. \label{time} }}
 \end{table}
+
+%Appendix begint hier
+\appendix
+
+\onecolumn
+
 
 \section{Example Appendix}
 \label{sec:appendix}
@@ -446,7 +524,7 @@ Starting with the POS tags. I extracted the POS tags from the dataset and counte
 The results show that the most common POS tags in the CoNLL training set are NNP \ref{fig:pos_distribution}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/POS.png}
+    \includegraphics[width=0.95\linewidth]{figures/POS.png}
     \caption{Distribution of POS tags in the CoNLL training set.}
     \label{fig:pos_distribution}
 \end{figure}
@@ -454,7 +532,7 @@ Next, I looked at the capitalization feature. I counted the number of capitalize
 The results show that a significant (about 25\%) portion of the tokens in the CoNLL training set are capitalized \ref{fig:capitalization_distribution}.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/capitalized.png}
+    \includegraphics[width=0.95\linewidth]{figures/capitalized.png}
     \caption{Capitalization distribution in the CoNLL training set.}
     \label{fig:capitalization_distribution}
 \end{figure}
@@ -464,13 +542,13 @@ The results show that certain tokens, such as "the", "of", and "in", are more co
 This didn't correspond exactly with my hypothesis, as I expected more articles like "a" and "an" to be present.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/tokens_before_NE.png}
+    \includegraphics[width=0.95\linewidth]{figures/tokens_before_NE.png}
     \caption{Top 15 most common tokens before named entities in the CoNLL training set.}
     \label{fig:tokens_before_NE}
 \end{figure}
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/NE_preciding_tokes.png}
+    \includegraphics[width=0.95\linewidth]{figures/NE_preciding_tokes.png}
     \caption{Top 15 most common tokens preceding named entities in the CoNLL training set.}
     \label{fig:ne_preceding_tokens}
 \end{figure}
@@ -478,7 +556,7 @@ This didn't correspond exactly with my hypothesis, as I expected more articles l
 Next, I explored the most common words per category.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/word_freq_with_IOB.png}
+    \includegraphics[width=0.8\linewidth]{figures/word_freq_with_IOB.png}
     \caption{Most common words per named entity label in the CoNLL training set.}
     \label{fig:most_common_words_per_label_with_IOB}
 \end{figure}
@@ -487,7 +565,7 @@ This graph shows the most common words for location, persons, organizations and 
 For location, "u.s" is most common, "cup" is most common for miscellaneous names,"clinton" for persons and "of" for organizations.
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\linewidth]{figures/word_freq_without_IOB.png}
+    \includegraphics[width=0.8\linewidth]{figures/word_freq_without_IOB.png}
     \caption{Most common words per named entity label (without IOB) in the CoNLL training set.}
     \label{fig:most_common_words_per_label_no_IOB}
 \end{figure}
@@ -545,5 +623,24 @@ Since the option of evaluating at span-level is advanced, I will focus on token-
 This means, that the BIO tags will be taken into account when calculating the metrics and have to match exactly.
 If only a partial match is made (so either wrong BIO tag, or wrong NE label), it will be considered incorrect.
 In the notebook, I already implemented this evaluation function.
+
+
+\subsection*{Assignment 2} New features from literature study
+After conducting a literature study on easy-to-implement features for NER, I found several features that could potentially improve the performance of our NER model.
+These features include:
+\begin{itemize}
+    \item previous predicted label
+    \item presence of digits
+    \item position in the sentence
+\end{itemize}
+
+\cite{Warto2024SystematicLR} provides a comprehensive overview of various features used in NER tasks.
+From the figure on page 920 in the paper, I concluded that the most used features were word embeddings, POS-tagging and character embeddings.
+Since word embeddings are part of the next step, I focused on the POS-tagging and the preceding POS tag.
+In \cite{Nadeau2007ASO}, the authors discuss various features for NER, including word features and lexical features.
+The table on page 8 in the paper shows several word-level features like the presence of digit and the position of the token in the sentence.
+
+I implemented the features above in the code and will evaluate their impact on the model's performance in the next section.
+
 
 \end{document}
