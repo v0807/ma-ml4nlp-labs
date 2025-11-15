@@ -101,6 +101,21 @@ def extract_features(inputfile):
     return data
     
 def create_classifier(train_features, train_targets, modelname):
+    """
+    Creates and trains a classifier based on the specified model name.
+    Supported models:
+        - 'logreg': Logistic Regression with feature vectorization and scaling.
+        - 'SVM': Support Vector Machine with feature vectorization.
+        - 'NB': Bernoulli Naive Bayes with feature vectorization.
+    Parameters:
+        train_features (list of dict): List of feature dictionaries for training samples.
+        train_targets (list): List of target labels for training samples.
+        modelname (str): Name of the model to create ('logreg', 'SVM', or 'NB').
+    Returns:
+        model: Trained classifier model.
+        vec (DictVectorizer): Fitted DictVectorizer used for feature transformation.
+        scaler (StandardScaler or None): Fitted StandardScaler used for feature scaling (only for 'logreg').
+    """
    
     if modelname == 'logreg':
         print("Creating Logistic Regression model")
@@ -171,6 +186,23 @@ def classify_data(model, vec, scaler, inputdata, outputfile):
     outfile.close()
 
 def create_and_save_models(training_features, gold_labels, modelnames=None):
+    """
+    Trains and saves machine learning models for Named Entity Recognition (NER).
+
+    For each model name provided in `modelnames`, this function:
+    - Creates a classifier using the given training features and gold labels.
+    - Saves the trained model, its vectorizer, and scaler (if applicable) to disk as pickle files.
+
+    Args:
+        training_features (Any): Features used for training the models.
+        gold_labels (Any): Target labels for training.
+        modelnames (list of str, optional): List of model names to train and save. Each name should correspond to a supported classifier.
+
+    Saves:
+        <modelname>_ner_model.pkl: The trained model for each model name.
+        <modelname>_vec.pkl: The vectorizer used for feature transformation.
+        <modelname>_scaler.pkl: The scaler used for feature normalization (if applicable).
+    """
     for modelname in modelnames:
             ml_model, vec, scaler = create_classifier(training_features, gold_labels, modelname)
             print(f"model and vec created for {modelname}")
@@ -183,6 +215,20 @@ def create_and_save_models(training_features, gold_labels, modelnames=None):
                     pickle.dump(scaler, f)
 
 def open_models_and_classify(inputfile, outputfile, modelnames):
+    """
+    Loads specified machine learning models and their associated vectorizers/scalers,
+    then classifies data from the input file using each model, saving the results to
+    separate output files.
+    Parameters:
+        inputfile (str): Path to the input file containing data to classify.
+        outputfile (str): Base path for the output file(s). The model name will be appended to the filename.
+        modelnames (list of str): List of model names to use for classification. Supported values are
+            'logreg', 'SVM', and 'NB'.
+    Side Effects:
+        - Loads model, vectorizer, and scaler objects from pickle files.
+        - Calls `classify_data` for each model, saving results to output files with model-specific names.
+        - Prints progress messages to the console.
+    """
 
     for modelname in modelnames:
         print(f"start classifying with model: {modelname}")
@@ -212,6 +258,21 @@ def open_models_and_classify(inputfile, outputfile, modelnames):
         print("Done classifying with model:", modelname)
 
 def evaluate_ner(gold_labels, pred_labels, modelname): # copied and altered from A1
+    """
+    Evaluates Named Entity Recognition (NER) predictions by generating a classification report and confusion matrices.
+    Args:
+        gold_labels (list or array-like): The true labels for the NER task.
+        pred_labels (list or array-like): The predicted labels from the NER model.
+        modelname (str): The name of the model, used for saving confusion matrix figures.
+    Prints:
+        - Classification report with precision, recall, and F1-score for each label.
+        - Normalized confusion matrix.
+        - Non-normalized confusion matrix.
+    Saves:
+        - Normalized confusion matrix plot as 'figures/confusion_matrix_normalized_{modelname}.png'.
+        - Non-normalized confusion matrix plot as 'figures/confusion_matrix_{modelname}.png'.
+    """
+
     report = classification_report(gold_labels, pred_labels, digits=3)
     print(report)
     plt.figure(figsize=(12, 10))
@@ -242,6 +303,37 @@ def evaluate_ner(gold_labels, pred_labels, modelname): # copied and altered from
     plt.show()
 
 
+def train_svm_with_embeddings(train_file, dev_file, language_model):
+    """
+    Train and evaluate SVM model using word embeddings as features
+    
+    Args:
+        train_file: Path to training data file
+        dev_file: Path to development/test data file
+        language_model: Loaded word embedding model
+    """
+    # Extract features using word embeddings
+    print("Extracting features using word embeddings...")
+    train_features, train_labels = extract_embeddings_as_features_and_gold(train_file, language_model)
+    dev_features, dev_labels = extract_embeddings_as_features_and_gold(dev_file, language_model)
+    
+    # Train SVM model
+    print("Training SVM model with word embeddings...")
+    svm = SVC()
+    model = svm.fit(train_features, train_labels)
+    print("SVM training completed")
+
+    
+    # Make predictions
+    print("Making predictions...")
+    predictions = model.predict(dev_features)
+    
+    # Evaluate
+    print("\nEvaluation results:")
+    evaluate_ner(dev_labels, predictions, "SVM_embeddings")
+    
+    return model
+
 def main(argv=None):
     
     #a very basic way for picking up commandline arguments
@@ -256,37 +348,40 @@ def main(argv=None):
     #you can replace the values for these with paths to the appropriate files for now, e.g. by specifying values in argv
     #argv = ['mypython_program','','','']
     # Copied from A1
-    data_folder = "../../data/conll2003/"
+    data_folder = "./data/conll2003/"
     train_file = data_folder + "conll2003.train.conll"
     test_file = data_folder + "conll2003.test.conll"
     dev_file = data_folder + "conll2003.dev.conll"
 
-    argv = ['ner_machine_learning.py', train_file, dev_file, 'ner_output.conll']
-    trainingfile = argv[1]
-    inputfile = argv[2]
-    outputfile = argv[3]
+    # argv = ['ner_machine_learning.py', train_file, dev_file, 'ner_output.conll']
+    # trainingfile = argv[1]
+    # inputfile = argv[2]
+    # outputfile = argv[3]
     
-    #Alter this to experiment with other models
-    models = ['logreg', 'SVM', 'NB' ] #logreg, SVM, NB
+    # #Alter this to experiment with other models
+    # models = ['logreg', 'SVM', 'NB' ] #logreg, SVM, NB
     
-    training_features, gold_labels = extract_features_and_labels(trainingfile)
-    create_and_save_models(training_features, gold_labels, models)
-    open_models_and_classify(inputfile, outputfile, models) 
+    # training_features, gold_labels = extract_features_and_labels(trainingfile)
+    # create_and_save_models(training_features, gold_labels, models)
+    # open_models_and_classify(inputfile, outputfile, models) 
 
-    # Evaluate each model
-    for model in models:     
-        with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
-            pred_lines = f.readlines()
-            pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
-            gold_labels = [line.split()[-2] for line in pred_lines if line.strip()]
-        print(f"Evaluation for model: {model}")
+    # # Evaluate each model
+    # for model in models:     
+    #     with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
+    #         pred_lines = f.readlines()
+    #         pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
+    #         gold_labels = [line.split()[-2] for line in pred_lines if line.strip()]
+    #     print(f"Evaluation for model: {model}")
 
-        evaluate_ner(gold_labels, pred_labels, model)
+    #     evaluate_ner(gold_labels, pred_labels, model)
     
     
     ## for the word_embedding_model used in the `extract_embeddings_as_features_and_gold' you can either choose to use a statement like this:
-    language_model = gensim.models.KeyedVectors.load_word2vec_format('../../models/GoogleNews-vectors-negative300.bin.gz', binary=True)
-    ## and make sure the path works correctly, or you can add an argument to the commandline that allows users to specify the location of the language model.
-    
+    print("started opening model")
+    language_model = gensim.models.KeyedVectors.load_word2vec_format('models/GoogleNews-vectors-negative300.bin.gz', binary=True)
+    print("model opened")
+    train_svm_with_embeddings(train_file, dev_file, language_model)
+    print("done")
+
 if __name__ == '__main__':
     main()

@@ -250,7 +250,16 @@ LONDON	NNP	B-NP	B-LOC
 \section{Experiments and Results}
 
 \textcolor{magenta}{Length: ± 3 columns (including figures and tables) for Experiments and Results. Additional material can be provided in the Appendix.}
-
+\subsection{Hyperparameter Tuning}
+For the SVM model, a grid search was performed to find the best hyperparameters.
+A randomized search was performed because it offered a good trade-off between exploration and computational efficiency.
+The datasplit was made by using cross fold validation with k=5 on the development set.
+Using cross fold validation helps robustness of the results, since the model is trained and evaluated on different subsets of the data.
+The hyperparameters that were tuned are:
+\begin{itemize}
+    \item C: Regularization parameter. Sampled from a log uniform distribution between 0.001 and 1000.
+    \item Kernel: Kernel type to be used in the algorithm. Values tested: ['linear', 'rbf', 'poly', 'sigmoid']
+\end{itemize}
 \subsection{Evaluation}
 
 \begin{itemize}

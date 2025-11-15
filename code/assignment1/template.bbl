@@ -1,5 +1,13 @@
-\begin{thebibliography}{4}
+\begin{thebibliography}{5}
 \expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Lee et~al.(2013)Lee, Chang, Peirsman, Chambers, Surdeanu, and
+  Jurafsky}]{lee-etal-2013-deterministic}
+Heeyoung Lee, Angel Chang, Yves Peirsman, Nathanael Chambers, Mihai Surdeanu,
+  and Dan Jurafsky. 2013.
+\newblock \href {https://doi.org/10.1162/COLI_a_00152} {Deterministic
+  coreference resolution based on entity-centric, precision-ranked rules}.
+\newblock \emph{Computational Linguistics}, 39(4):885--916.
 
 \bibitem[{Nadeau and Sekine(2007)}]{Nadeau2007ASO}
 David Nadeau and Satoshi Sekine. 2007.
