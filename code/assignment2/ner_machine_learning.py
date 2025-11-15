@@ -11,7 +11,7 @@ from scipy import sparse
 import pickle
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
-
+import gensim
 
 
 def extract_embeddings_as_features_and_gold(conllfile,word_embedding_model):
@@ -285,7 +285,7 @@ def main(argv=None):
     
     
     ## for the word_embedding_model used in the `extract_embeddings_as_features_and_gold' you can either choose to use a statement like this:
-    # language_model = gensim.models.KeyedVectors.load_word2vec_format('../../models/GoogleNews-vectors-negative300.bin.gz', binary=True)
+    language_model = gensim.models.KeyedVectors.load_word2vec_format('../../models/GoogleNews-vectors-negative300.bin.gz', binary=True)
     ## and make sure the path works correctly, or you can add an argument to the commandline that allows users to specify the location of the language model.
     
 if __name__ == '__main__':

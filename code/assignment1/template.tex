@@ -425,6 +425,38 @@ The human uses linguistic insight to understand the message's meaning, context, 
 In contrast, the computer only performs mathematical algebra on the numbers, learning that the presence of the feature associated with "brilliant" has a specific high positive weight, which pushes the aggregate score above the positive threshold.
 The system's success is therefore entirely dependent on the quality of the initial human-engineered features that capture the necessary linguistic cues, so this part of the assignment is very important to me.
 
+\subsection*{1.B.1: Useful features according to rule based system}
+Central to the paper of \cite{lee-etal-2013-deterministic} is a deterministic coreference solution that starts with mention detection.
+In the mention detection phase, nominal and pronominal mentions are identified using a high recall algorithm.
+The coreference stages follows and applies 10 different models "sieves"  from highest to lowest precision.
+The highest precision model is the speaker identification sieve, which is highly useful to connect first and second person pronouns inside quotation marks to the nearest recognized speaker.
+This would result in True for the pair (I, Vera) in the text: "I can't wait to see it", Vera said.
+Another useful model is the exact string match sieve, which links mentions with identical strings.
+This could be done through a head match like "company" in "the tech company". or precise like "VU" in "The best university in Amsterdam is the VU".
+They have extremely high precision and can therefore establish coreference links with high confidence.
+The final feature I want to highlight is the pronominal agreement constraint. Which is a binary feature that checks for agreement between a pronoun and possible antecedent.
+It checks if there is number agreement in the pair (singular vs plural) and gender agreement (male, female, neutral), and animacy agreement (animate vs inanimate).
+For example, in the sentence "Vera walks her dog everyday, she loves it" the pronoun "she" agrees in number and gender with "Vera", making it a likely antecedent.
+
+\subsection*{1.B.2: Present the features to the system}
+In this section I discuss two of the features mentioned above in 1.B.1 and explain how to represent this feature to a system and how it differs, from what humans see.
+\textbf{Exact String Match Sieve}
+The exact string match sieve is represented by a set of simple, binary features based on the surface form of the mentions.
+For any candidate mention pair $(M_i, M_j)$, the system calculates: $\mathrm{Is\_Exact\_String\_Match}(M_i, M_j)$ (True/False) and $\mathrm{Is\_Head\_Word\_Match}(M_i, M_j)$ (True/False).
+These features offer the computer the highest degree of certainty because they rely on deterministic character-by-character comparison.
+What the computer sees is a calculation result like $\text{Head\_Match} = 1$.
+This contrasts sharply with what a human sees: we instantly recognize the identity of two mentions like "the President" and "President" as a semantic guarantee.
+The computer, lacking semantics, uses the head-word match as a heavy weight feature.
+
+\textbf{Pronominal Agreement}
+The Pronominal Agreement feature, presents a more difficult challenge as it requires complex inference and aggregation.
+The computer must first assign linguistic attributes (Gender, Number, Animacy) to the candidate pronoun ($M_{pronoun}$) based on static lists.
+Next, it must check these against the entire antecedent cluster ($E_{antecedent}$). $E_{antecedent}$ is not a single piece of text; it's a dynamic data structure storing the consensus attributes inferred from all previous mentions linked to the entity.
+The system then generates binary constraint features like: $\mathrm{Number\_Violation}(M_{\text{pronoun}}, E_{\text{antecedent}})$ and $\mathrm{Gender\_Violation}(M_{\text{pronoun}}, E_{\text{antecedent}})$.
+What the computer sees are these violation flags. If $\mathrm{Gender\_Violation}$ is True, the classifier assigns a massive negative weight to the potential coreference link.
+What a human sees is an immediate semantic and real-world absurdity (e.g., trying to refer to a table with the pronoun "he").
+The computer approximates this human constraint through a cascade of fallible preprocessing steps (NER to determine animacy, part-of-speech tagging to determine number) followed by a simple binary comparison.
+
 \subsection*{Assignment 3}
 
 
