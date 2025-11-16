@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  15 NOV 2025 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  16 NOV 2025 11:57
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -506,18 +506,17 @@ Underfull \hbox (badness 2401) in paragraph at lines 235--236
 \T1/ptm/m/n/10.95 (+20) nouns and po-ten-tial named en-ti-ties,
  []
 
-
-Overfull \hbox (12.19263pt too wide) in paragraph at lines 272--291
+[3]
+Overfull \hbox (12.19263pt too wide) in paragraph at lines 273--292
  [][] 
  []
 
-[3]
 <../assignment2/figures/confusion_matrix_normalized_logreg.png, id=109, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_logreg.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_logreg.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_logreg.png  used on input line 295.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_logreg.png  used on input line 296.
 (pdftex.def)             Requested size: 208.13115pt x 173.4405pt.
- (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.bbl
+(/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 6--11
 []\T1/ptm/m/n/10 Heeyoung Lee, An-gel Chang, Yves Peirs-man,
  []
@@ -537,124 +536,154 @@ Underfull \hbox (badness 1072) in paragraph at lines 33--39
 ] [6
 
 ]
-Underfull \hbox (badness 1092) in paragraph at lines 451--459
+Underfull \hbox (badness 1092) in paragraph at lines 452--460
 \T1/ptm/m/n/10.95 (+20) In this sec-tion I dis-cuss two of the fea-tures
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 451--459
+Underfull \hbox (badness 10000) in paragraph at lines 452--460
 \T1/ptm/m/n/10.95 (+20) cal-cu-lates: $[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 M[]; M[]\OT1/cmr/m/n/10.95 )$
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 460--468
+Underfull \hbox (badness 10000) in paragraph at lines 461--469
 []\T1/ptm/b/n/10.95 Pronominal Agree-ment \T1/ptm/m/n/10.95 (+20) The Pronom-i-nal
  []
 
 
-Underfull \hbox (badness 1838) in paragraph at lines 460--468
+Underfull \hbox (badness 1838) in paragraph at lines 461--469
 \T1/ptm/m/n/10.95 (+20) Agree-ment fea-ture, presents a more dif-fi-cult
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 460--468
+Underfull \hbox (badness 1019) in paragraph at lines 461--469
 \T1/ptm/m/n/10.95 (+20) then gen-er-ates bi-nary con-straint fea-tures like:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 460--468
+Underfull \hbox (badness 10000) in paragraph at lines 461--469
 []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 M[]; E[]\OT1/cmr/m/n/10.95 )$ \T1/ptm/m/n/10.95 (+20) and
  []
 
 
-Underfull \hbox (badness 1231) in paragraph at lines 460--468
+Underfull \hbox (badness 1231) in paragraph at lines 461--469
 \T1/ptm/m/n/10.95 (+20) com-puter ap-prox-i-mates this hu-man con-straint
  []
 
 
-Underfull \hbox (badness 4492) in paragraph at lines 460--468
+Underfull \hbox (badness 4492) in paragraph at lines 461--469
 \T1/ptm/m/n/10.95 (+20) (NER to de-ter-mine an-i-macy, part-of-speech
  []
 
 [8
 
 ]
-Underfull \hbox (badness 3271) in paragraph at lines 488--488
+Underfull \hbox (badness 3271) in paragraph at lines 489--489
 []\T1/ptm/m/n/9 (+20) Watch the videos of
  []
 
 
-Underfull \hbox (badness 3323) in paragraph at lines 489--489
+Underfull \hbox (badness 3323) in paragraph at lines 490--490
 []\T1/ptm/m/n/9 (+20) Finish 2.1 about un-
  []
 
 
-Underfull \hbox (badness 1337) in paragraph at lines 489--489
+Underfull \hbox (badness 1337) in paragraph at lines 490--490
 \T1/ptm/m/n/9 (+20) der-stand-ing NER and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 489--490
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
 []\T1/ptm/m/n/9 (+20) 1.5
  []
 
 
-Underfull \hbox (badness 2189) in paragraph at lines 492--492
+Underfull \hbox (badness 2189) in paragraph at lines 493--493
 []\T1/ptm/m/n/9 (+20) Started with 3.1, de-
  []
 
 
-Underfull \hbox (badness 1242) in paragraph at lines 492--492
+Underfull \hbox (badness 1242) in paragraph at lines 493--493
 \T1/ptm/m/n/9 (+20) scrip-tion of pre-ci-sion,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 492--493
+Underfull \hbox (badness 10000) in paragraph at lines 493--494
 []\T1/ptm/m/n/9 (+20) 0.5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--495
+Underfull \hbox (badness 10000) in paragraph at lines 495--496
 []\T1/ptm/m/n/9 (+20) 1.5
  []
 
 
-Underfull \hbox (badness 1635) in paragraph at lines 496--496
+Underfull \hbox (badness 1635) in paragraph at lines 497--497
 []\T1/ptm/m/n/9 (+20) Did a brief lit-er-a-ture
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--497
+Underfull \hbox (badness 10000) in paragraph at lines 497--498
 []\T1/ptm/m/n/9 (+20) 1.5
  []
 
 
-Underfull \hbox (badness 3029) in paragraph at lines 497--497
+Underfull \hbox (badness 3029) in paragraph at lines 498--498
 []\T1/ptm/m/n/9 (+20) Implemented the fea-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 497--498
+Underfull \hbox (badness 10000) in paragraph at lines 498--499
 []\T1/ptm/m/n/9 (+20) 2.5
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 498--498
+Underfull \hbox (badness 10000) in paragraph at lines 499--499
 []\T1/ptm/m/n/9 (+20) Trained the mod-els
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 498--499
+Underfull \hbox (badness 10000) in paragraph at lines 499--500
 []\T1/ptm/m/n/9 (+20) 1.5
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 499--499
+Underfull \hbox (badness 1478) in paragraph at lines 500--500
 []\T1/ptm/m/n/9 (+20) Evaluated the mod-els
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 499--500
+Underfull \hbox (badness 10000) in paragraph at lines 500--501
+[]\T1/ptm/m/n/9 (+20) 1.5
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+\T1/ptm/m/n/9 (+20) (train-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+\T1/ptm/m/n/9 (+20) ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+\T1/ptm/m/n/9 (+20) took
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+\T1/ptm/m/n/9 (+20) about
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 504--505
+\T1/ptm/m/n/9 (+20) 12h in
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--506
 []\T1/ptm/m/n/9 (+20) 1.5
  []
 
@@ -669,38 +698,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 499--500
 <figures/POS.png, id=201, 930.8376pt x 388.0899pt>
 File: figures/POS.png Graphic file (type png)
 <use figures/POS.png>
-Package pdftex.def Info: figures/POS.png  used on input line 576.
+Package pdftex.def Info: figures/POS.png  used on input line 581.
 (pdftex.def)             Requested size: 432.48051pt x 180.31189pt.
 <figures/capitalized.png, id=203, 431.4519pt x 314.3745pt>
 File: figures/capitalized.png Graphic file (type png)
 <use figures/capitalized.png>
-Package pdftex.def Info: figures/capitalized.png  used on input line 584.
+Package pdftex.def Info: figures/capitalized.png  used on input line 589.
 (pdftex.def)             Requested size: 432.48051pt x 315.13164pt.
 <figures/tokens_before_NE.png, id=206, 641.0349pt x 375.804pt>
 File: figures/tokens_before_NE.png Graphic file (type png)
 <use figures/tokens_before_NE.png>
-Package pdftex.def Info: figures/tokens_before_NE.png  used on input line 594.
+Package pdftex.def Info: figures/tokens_before_NE.png  used on input line 599.
 (pdftex.def)             Requested size: 432.48051pt x 253.53633pt.
 <figures/NE_preciding_tokes.png, id=207, 641.0349pt x 369.2997pt>
 File: figures/NE_preciding_tokes.png Graphic file (type png)
 <use figures/NE_preciding_tokes.png>
-Package pdftex.def Info: figures/NE_preciding_tokes.png  used on input line 600.
+Package pdftex.def Info: figures/NE_preciding_tokes.png  used on input line 605.
 (pdftex.def)             Requested size: 432.48051pt x 249.1482pt.
 <figures/word_freq_with_IOB.png, id=208, 714.7503pt x 1293.633pt>
 File: figures/word_freq_with_IOB.png Graphic file (type png)
 <use figures/word_freq_with_IOB.png>
-Package pdftex.def Info: figures/word_freq_with_IOB.png  used on input line 608.
+Package pdftex.def Info: figures/word_freq_with_IOB.png  used on input line 613.
 (pdftex.def)             Requested size: 364.19667pt x 659.17166pt.
 <figures/word_freq_without_IOB.png, id=211, 714.7503pt x 1293.633pt>
 File: figures/word_freq_without_IOB.png Graphic file (type png)
 <use figures/word_freq_without_IOB.png>
-Package pdftex.def Info: figures/word_freq_without_IOB.png  used on input line 617.
+Package pdftex.def Info: figures/word_freq_without_IOB.png  used on input line 622.
 (pdftex.def)             Requested size: 364.19667pt x 659.17166pt.
  [12 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/POS.png>] [13 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/capitalized.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/tokens_before_NE.png>] [14 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/NE_preciding_tokes.png>] [15 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_with_IOB.png>] [16 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_without_IOB.png>]
 <../assignment2/figures/confusion_matrix_normalized_SVM.png, id=257, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_SVM.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_SVM.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM.png  used on input line 725.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM.png  used on input line 730.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 
 
@@ -709,32 +738,32 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <../assignment2/figures/confusion_matrix_normalized_NB.png, id=258, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_NB.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_NB.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_NB.png  used on input line 757.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_NB.png  used on input line 762.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 [17] [18 <../assignment2/figures/confusion_matrix_normalized_SVM.png> <../assignment2/figures/confusion_matrix_normalized_NB.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 772.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 804.
  [19]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 772.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 804.
  (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 772.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 772.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 804.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 804.
 Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: A71687B5D0C76C90B8627DC182508526;967.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 772.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 11536 strings out of 483107
- 179249 string characters out of 5964629
- 472920 words of memory out of 5000000
- 26087 multiletter control sequences out of 15000+600000
- 580846 words of font info for 195 fonts, out of 8000000 for 9000
+ 11543 strings out of 483107
+ 179347 string characters out of 5964629
+ 475986 words of memory out of 5000000
+ 26088 multiletter control sequences out of 15000+600000
+ 581042 words of font info for 198 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 49i,10n,46p,532b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 49i,10n,46p,532b,453s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf (19 pages, 793582 bytes).
+Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf (19 pages, 794662 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 273 compressed objects within 3 object streams
- 79 named destinations out of 1000 (max. 500000)
+ 330 PDF objects out of 1000 (max. 8388607)
+ 275 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 500000)
  25280 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -4,7 +4,7 @@ from sklearn.preprocessing import StandardScaler
 import pandas as pd
 import sys
 import csv
-from sklearn.svm import SVC
+from sklearn.svm import LinearSVC, SVC
 from sklearn.naive_bayes import BernoulliNB
 import numpy as np
 from scipy import sparse
@@ -12,7 +12,9 @@ import pickle
 from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 import gensim
-
+from sklearn.model_selection import RandomizedSearchCV, cross_val_score
+from scipy.stats import uniform, randint
+import joblib
 
 def extract_embeddings_as_features_and_gold(conllfile,word_embedding_model):
     '''
@@ -141,12 +143,46 @@ def create_classifier(train_features, train_targets, modelname):
         
 
     if modelname == 'SVM':
+        # Define the parameter space for random search
+        param_distributions = {
+            'C': uniform(0.1, 100.0),
+            'kernel': ['linear', 'rbf', 'sigmoid'],
+            'gamma': uniform(0.001, 1.0)
+        }
+        
+        # Initialize base SVM model
         svm = SVC()
+        
+        # Initialize RandomizedSearchCV
+        random_search = RandomizedSearchCV(
+            svm,
+            param_distributions=param_distributions,
+            n_iter=5,  # Number of parameter settings sampled
+            cv=5,       # 5-fold cross-validation
+            n_jobs=-1,  # Use all available cores
+            verbose=3,  # get the score as well during training
+            random_state=42
+        )
+
+        # Save the entire object
+        joblib.dump(random_search, 'svm_random_search_results.pkl')
+        
+        # Vectorize features
         vec = DictVectorizer()
         features_vectorized = vec.fit_transform(train_features)
-        print("Training SVM model...")
-        model = svm.fit(features_vectorized, train_targets)
+        
+        print("Training SVM model with hyperparameter tuning...")
+        model = random_search.fit(features_vectorized, train_targets)
+        
+        # Print the best parameters and score
+        print("Best parameters found:", model.best_params_)
+        print("Best cross-validation score:", model.best_score_)
         print("SVM training completed")
+
+        with open('svm_best_model_estimator.pkl', 'wb') as f:
+            pickle.dump(model.best_estimator_, f)
+        with open ('svm_model_after_tuning.pkl', 'wb') as f:
+            pickle.dump(model, f)
 
     if modelname == 'NB':
         print("Creating Bernoulli Naive Bayes model...")
@@ -286,7 +322,7 @@ def evaluate_ner(gold_labels, pred_labels, modelname): # copied and altered from
     plt.title("Normalized Confusion Matrix", fontsize=22)
     plt.xlabel("Predicted Label", fontsize=20)
     plt.ylabel("True Label", fontsize=20)
-    plt.savefig(f'figures/confusion_matrix_normalized_{modelname}.png')
+    plt.savefig(f'code/assignment2/figures/confusion_matrix_normalized_{modelname}.png')
     plt.show()
     
 
@@ -299,7 +335,7 @@ def evaluate_ner(gold_labels, pred_labels, modelname): # copied and altered from
     plt.title("Confusion Matrix", fontsize=22)
     plt.xlabel("Predicted Label", fontsize=20)
     plt.ylabel("True Label", fontsize=20)
-    plt.savefig(f'figures/confusion_matrix_{modelname}.png')
+    plt.savefig(f'code/assignment2/figures/confusion_matrix_{modelname}.png')
     plt.show()
 
 
@@ -319,7 +355,7 @@ def train_svm_with_embeddings(train_file, dev_file, language_model):
     
     # Train SVM model
     print("Training SVM model with word embeddings...")
-    svm = SVC()
+    svm = LinearSVC()
     model = svm.fit(train_features, train_labels)
     print("SVM training completed")
 
@@ -353,35 +389,35 @@ def main(argv=None):
     test_file = data_folder + "conll2003.test.conll"
     dev_file = data_folder + "conll2003.dev.conll"
 
-    # argv = ['ner_machine_learning.py', train_file, dev_file, 'ner_output.conll']
-    # trainingfile = argv[1]
-    # inputfile = argv[2]
-    # outputfile = argv[3]
+    argv = ['ner_machine_learning.py', train_file, dev_file, './code/assignment2/ner_output.conll']
+    trainingfile = argv[1]
+    inputfile = argv[2]
+    outputfile = argv[3]
     
     # #Alter this to experiment with other models
-    # models = ['logreg', 'SVM', 'NB' ] #logreg, SVM, NB
+    models = ['SVM'] #logreg, SVM, NB
     
-    # training_features, gold_labels = extract_features_and_labels(trainingfile)
-    # create_and_save_models(training_features, gold_labels, models)
-    # open_models_and_classify(inputfile, outputfile, models) 
+    training_features, gold_labels = extract_features_and_labels(trainingfile)
+    create_and_save_models(training_features, gold_labels, models)
+    open_models_and_classify(inputfile, outputfile, models) 
 
-    # # Evaluate each model
-    # for model in models:     
-    #     with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
-    #         pred_lines = f.readlines()
-    #         pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
-    #         gold_labels = [line.split()[-2] for line in pred_lines if line.strip()]
-    #     print(f"Evaluation for model: {model}")
+    # Evaluate each model
+    for model in models:     
+        with open(outputfile.replace('.conll',f'.{model}.conll'), 'r') as f:
+            pred_lines = f.readlines()
+            pred_labels= [line.split()[-1] for line in pred_lines if line.strip()]
+            gold_labels = [line.split()[-2] for line in pred_lines if line.strip()]
+        print(f"Evaluation for model: {model}")
 
-    #     evaluate_ner(gold_labels, pred_labels, model)
+        evaluate_ner(gold_labels, pred_labels, model)
     
     
     ## for the word_embedding_model used in the `extract_embeddings_as_features_and_gold' you can either choose to use a statement like this:
-    print("started opening model")
-    language_model = gensim.models.KeyedVectors.load_word2vec_format('models/GoogleNews-vectors-negative300.bin.gz', binary=True)
-    print("model opened")
-    train_svm_with_embeddings(train_file, dev_file, language_model)
-    print("done")
+    # print("started opening model")
+    # language_model = gensim.models.KeyedVectors.load_word2vec_format('models/GoogleNews-vectors-negative300.bin.gz', binary=True)
+    # print("model opened")
+    # train_svm_with_embeddings(train_file, dev_file, language_model)
+    # print("done")
 
 if __name__ == '__main__':
     main()
