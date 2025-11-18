@@ -194,7 +194,7 @@ LONDON	NNP	B-NP	B-LOC
           This paper will focus on token-level evaluation for the assignments.
           This means, that the BIO tags will be taken into account when calculating the metrics and have to match exactly.
           If only a partial match is made (so either wrong BIO tag, or wrong NE label), it will be considered incorrect.
-    \item[] \textit{Assignment 2 and 3}: Update if necessary
+    \item[] \textit{Assignment 3}: Update if necessary
 \end{itemize}
 
 
@@ -257,10 +257,19 @@ The datasplit was made by using cross fold validation with k=5 on the developmen
 Using cross fold validation helps robustness of the results, since the model is trained and evaluated on different subsets of the data.
 The hyperparameters that were tuned are:
 \begin{itemize}
-    \item C: Regularization parameter. Sampled from a uniform distribution between 0.001 and 1000.
-    \item Kernel: Kernel type to be used in the algorithm. Values tested: ['linear', 'rbf', 'poly', 'sigmoid']
-    \item Gamma: Kernel coefficient for 'rbf', 'poly' and 'sigmoid'. Sampled from a uniform distribution between 0.001 and 1.0.
+    \item C: Regularization parameter. Sampled from a uniform distribution between 0.1 and 100.
+    \item Kernel: Kernel type to be used in the algorithm. Values tested: ['linear', 'rbf', 'sigmoid']
+    \item Gamma: Kernel coefficient for 'rbf' and 'sigmoid'. Sampled from a uniform distribution between 0.001 and 1.0.
 \end{itemize}
+On the test machine (8 cores), it took about 22 hours to complete the randomized search with 5 iterations and 5 fold cross validation.
+The best hyperparameters found were:
+\begin{itemize}
+    \item C: 15.699452033620265
+    \item Kernel: linear
+    \item Gamma: 0.05908361216819946 (not used by linear kernel, but kept for reference)
+\end{itemize}
+After hyperparameter tuning, the SVM model's performance improved significantly. Especially on the I-MISC and I-LOC labels, where previously no correct predictions were made.
+The results are shown in the table \ref{tab:evaluation report SVM tuned} and the confusion matrix \ref{fig:confusion_matrix_SVM_tuned}.
 \subsection{Evaluation}
 
 \begin{itemize}
@@ -475,36 +484,37 @@ The computer approximates this human constraint through a cascade of fallible pr
 
 
 \clearpage
+\onecolumn
 
 \section*{Time spent}\label{app.time}
 
 \begin{table}[!htb]
     \centering
     \small{
-        \begin{tabular}{p{1cm}p{3cm}p{1cm}}
+        \begin{tabular}{lll}
             \toprule
-            Week  & Task                                                   & Time                                       \\
+            Week  & Task                                                   & Time                                                  \\
             \midrule
-            1     & Understand the assignment and getting everything setup & 30 minutes                                 \\
-            1     & Watch the videos of module 1                           & 2 hours                                    \\
-            1     & Finish 2.1 about understanding NER and CoNLL           & 1.5 hours                                  \\
-            1     & Work on 2.2.1 further exploration of the data          & 1 hour                                     \\
-            1     & Work on 2.2.2 feature hypothesis                       & 1 hour                                     \\
-            1     & Started with 3.1, description of precision, recall etc & 0.5 hour                                   \\
-            2     & Did all the week 2 tasks for assignment 1              & 2 hours                                    \\
-            2     & Incorporated the feedback for assignment 1             & 1.5 hours                                  \\
-            3     & Worked on the theoretical step of assignment 2         & 1 hour                                     \\
-            3     & Did a brief literature study for efficient features    & 1.5 hours                                  \\
-            3     & Implemented the features from the literature study     & 2.5 hours                                  \\
-            3     & Trained the models SVM and NB                          & 1.5 hours                                  \\
-            3     & Evaluated the models and created confusion matrices    & 1.5 hours                                  \\
-            3     & Updated the report for assignment 2                    & 2 hours                                    \\
-            4     & Worked on 1.B theoretical part                         & 1 hour                                     \\
-            4     & Worked on assignment 2 word embeddings                 & 3 hours                                    \\
-            4     & Worked on assignment 2 hyperparameter tuning           & 5 hours (training took about 12h in total) \\
-            4     & Updated the report for assignment 2                    & 1.5 hours                                  \\
+            1     & Understand the assignment and getting everything setup & 30 minutes                                            \\
+            1     & Watch the videos of module 1                           & 2 hours                                               \\
+            1     & Finish 2.1 about understanding NER and CoNLL           & 1.5 hours                                             \\
+            1     & Work on 2.2.1 further exploration of the data          & 1 hour                                                \\
+            1     & Work on 2.2.2 feature hypothesis                       & 1 hour                                                \\
+            1     & Started with 3.1, description of precision, recall etc & 0.5 hour                                              \\
+            2     & Did all the week 2 tasks for assignment 1              & 2 hours                                               \\
+            2     & Incorporated the feedback for assignment 1             & 1.5 hours                                             \\
+            3     & Worked on the theoretical step of assignment 2         & 1 hour                                                \\
+            3     & Did a brief literature study for efficient features    & 1.5 hours                                             \\
+            3     & Implemented the features from the literature study     & 2.5 hours                                             \\
+            3     & Trained the models SVM and NB                          & 1.5 hours                                             \\
+            3     & Evaluated the models and created confusion matrices    & 1.5 hours                                             \\
+            3     & Updated the report for assignment 2                    & 2 hours                                               \\
+            4     & Worked on 1.B theoretical part                         & 1 hour                                                \\
+            4     & Worked on assignment 2 word embeddings                 & 3 hours                                               \\
+            4     & Worked on assignment 2 hyperparameter tuning           & 6 hours (training and tuning took about 26h in total) \\
+            4     & Updated the report for assignment 2                    & 2 hours                                               \\
             \midrule
-            Total & 27.5 hours                                                                                          \\
+            Total & 30 hours                                                                                                       \\
 
             \bottomrule
         \end{tabular}
@@ -514,13 +524,7 @@ The computer approximates this human constraint through a cascade of fallible pr
 %Appendix begint hier
 \appendix
 
-\onecolumn
 
-
-\section{Example Appendix}
-\label{sec:appendix}
-
-This is an appendix. You can include additional analyses and tables here (e.g.\ samples you analyzed for your error analysis).
 
 \clearpage
 
@@ -703,7 +707,7 @@ The results are summarized in the following tables and confusion matrices: \ref{
 
 \begin{table}[h!]
     \centering
-    \caption{NER classification report for SVM}
+    \caption{NER classification report for SVM (not tuned hyperparameters)}
     \label{tab:evaluation report SVM}
     \begin{tabular}{l rrrr}
         \toprule
@@ -727,9 +731,44 @@ The results are summarized in the following tables and confusion matrices: \ref{
 \end{table}
 \begin{figure}
     \centering
-    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_SVM.png}
-    \caption{Confusion matrix for SVM model.}
+    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png}
+    \caption{Confusion matrix for SVM model (not tuned hyperparameters).}
     \label{fig:confusion_matrix_SVM}
+\end{figure}
+
+After hyperparameter tuning, the SVM model's performance improved significantly.
+Especially on the I-MISC and I-LOC labels, where previously no correct predictions were made.
+The results are shown in the table below \ref{tab:evaluation report SVM tuned} and the confusion matrix
+\begin{table}[h]
+    \centering
+    \caption{NER classification report for SVM (tuned hyperparameters)}
+    \label{tab:evaluation report SVM tuned}
+    \begin{tabular}{l rrrr}
+        \toprule
+        \textbf{Tag}          & \textbf{precision}   & \textbf{recall} & \textbf{f1-score} & \textbf{support} \\
+        \midrule
+        B-LOC                 & 0.841                & 0.843           & 0.842             & 1837             \\
+        B-MISC                & 0.876                & 0.743           & 0.804             & 922              \\
+        B-ORG                 & 0.788                & 0.723           & 0.754             & 1341             \\
+        B-PER                 & 0.799                & 0.879           & 0.837             & 1842             \\
+        I-LOC                 & 0.796                & 0.728           & 0.760             & 257              \\
+        I-MISC                & 0.839                & 0.587           & 0.690             & 346              \\
+        I-ORG                 & 0.834                & 0.543           & 0.658             & 751              \\
+        I-PER                 & 0.784                & 0.943           & 0.856             & 1307             \\
+        O                     & 0.990                & 0.995           & 0.992             & 42759            \\
+        \midrule
+        \textbf{accuracy}     & \multicolumn{2}{c}{} & 0.961           & 51362                                \\
+        \textbf{macro avg}    & 0.839                & 0.776           & 0.799             & 51362            \\
+        \textbf{weighted avg} & 0.961                & 0.961           & 0.960             & 51362            \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_SVM.png}
+    \caption{Confusion matrix for SVM tuned.}
+    \label{fig:confusion_matrix_SVM_tuned}
 \end{figure}
 
 
@@ -773,32 +812,42 @@ Naive Bayes is very bad in the I-MISC and I-LOC labels, since it never predicts 
 Logistic Regression performs best overall, with the highest accuracy (0.957), followed by Naive Bayes (0.912) and SVM (0.893).
 
 \subsubsection*{SVM with word embeddings}
-I trained my SVM model with word embeddings based on the
+I trained my SVM model with word embeddings based on the GoogleNews-vectors-negative300 model.
+The results are shown in the table below \ref{tab:evaluation report SVM embeddings} and confusion matrix \ref{fig:confusion_matrix_SVM_embeddings}.
+Something to note about this table, is that the performance on the "O" label is steeply dropped compared to the SVM without the Google word embeddings.
+This is likely due to the fact that the word embeddings are not well suited for the "O" label, which is a very common label in the dataset.
+The overall accuracy of the SVM with word embeddings is 0.937, which is higher than the SVM without word embeddings (0.893).
+Note, I used a linear kernel for the SVM with word embeddings after the regular SVC took over 4h and still wasn't done training because of the large feature set.
 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png}
+    \caption{Confusion matrix for SVM model with word embeddings.}
+    \label{fig:confusion_matrix_SVM_embeddings}
+\end{figure}
 
 \begin{table}[h]
     \centering
-    \caption{NER classification report for SVM }
+    \caption{NER classification report for SVM with word embeddings}
     \label{tab:evaluation report SVM embeddings}
-    \begin{tabular}{l c c c c}
+    \begin{tabular}{l rrrr}
         \toprule
-        \textbf{Entity Tag}                   & \textbf{Precision} & \textbf{Recall} & \textbf{F1-Score} & \textbf{Support} \\
+        \textbf{Tag}          & \textbf{precision}   & \textbf{recall} & \textbf{f1-score} & \textbf{support} \\
         \midrule
-        B-LOC                                 & 0.818              & 0.795           & 0.807             & 1837             \\
-        B-MISC                                & 0.784              & 0.694           & 0.736             & 922              \\
-        B-ORG                                 & 0.697              & 0.644           & 0.669             & 1341             \\
-        B-PER                                 & 0.783              & 0.710           & 0.745             & 1842             \\
-        I-LOC                                 & 0.608              & 0.560           & 0.583             & 257              \\
-        I-MISC                                & 0.677              & 0.431           & 0.527             & 346              \\
-        I-ORG                                 & 0.610              & 0.361           & 0.454             & 751              \\
-        I-PER                                 & 0.598              & 0.566           & 0.582             & 1307             \\
-        O                                     & 0.974              & 0.996           & 0.985             & 42759            \\
+        B-LOC                 & 0.818                & 0.795           & 0.807             & 1837             \\
+        B-MISC                & 0.784                & 0.694           & 0.736             & 922              \\
+        B-ORG                 & 0.697                & 0.644           & 0.669             & 1341             \\
+        B-PER                 & 0.783                & 0.710           & 0.745             & 1842             \\
+        I-LOC                 & 0.608                & 0.560           & 0.583             & 257              \\
+        I-MISC                & 0.677                & 0.431           & 0.527             & 346              \\
+        I-ORG                 & 0.610                & 0.361           & 0.454             & 751              \\
+        I-PER                 & 0.598                & 0.566           & 0.582             & 1307             \\
+        O                     & 0.974                & 0.996           & 0.985             & 42759            \\
         \midrule
-        \multicolumn{4}{l}{\textbf{Accuracy}} & \textbf{0.937}                                                              \\
-        \midrule
-        \textbf{Averages}                     &                    &                 &                   &                  \\
-        Macro Avg                             & 0.728              & 0.640           & 0.676             & 51362            \\
-        Weighted Avg                          & 0.932              & 0.937           & 0.934             & 51362            \\
+        \textbf{accuracy}     & \multicolumn{2}{c}{} & 0.937           & 51362                                \\
+        \textbf{macro avg}    & 0.728                & 0.640           & 0.676             & 51362            \\
+        \textbf{weighted avg} & 0.932                & 0.937           & 0.934             & 51362            \\
         \bottomrule
     \end{tabular}
 \end{table}

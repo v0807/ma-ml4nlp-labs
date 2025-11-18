@@ -75,6 +75,75 @@ def extract_features_and_labels(trainingfile):
                 
             
     return data, targets
+
+def hyperparameter_tuning_svm(train_features, train_targets):
+    """
+    Performs hyperparameter tuning for an SVM classifier using randomized search and cross-validation.
+    This function vectorizes the input features, defines a parameter search space for the SVM,
+    and uses RandomizedSearchCV to find the best hyperparameters. The search results and best model
+    are saved to disk. The function returns the best estimator and the fitted vectorizer.
+    Parameters
+    ----------
+    train_features : list of dict
+        List of feature dictionaries for each training sample.
+    train_targets : array-like
+        Target labels corresponding to the training samples.
+    Returns
+    -------
+    best_estimator_ : sklearn.svm.SVC
+        The SVM classifier with the best found hyperparameters.
+    vec : sklearn.feature_extraction.DictVectorizer
+        The fitted DictVectorizer used to transform the features.
+    Side Effects
+    ------------
+    Saves the RandomizedSearchCV object, the best estimator, and the full search results to disk as pickle files.
+    Prints progress and results to stdout.
+
+    Note: This function can take a lot of time, last run took about 22h on a machine with 8 threads
+    """
+     # Define the parameter space for random search
+    param_distributions = {
+        'C': uniform(0.1, 100.0),
+        'kernel': ['linear', 'rbf', 'sigmoid'],
+        'gamma': uniform(0.001, 1.0)
+    }
+    
+    # Initialize base SVM model
+    svm = SVC()
+    
+    # Initialize RandomizedSearchCV
+    random_search = RandomizedSearchCV(
+        svm,
+        param_distributions=param_distributions,
+        n_iter=5,  # Number of parameter settings sampled
+        cv=5,       # 5-fold cross-validation
+        n_jobs=-1,  # Use all available cores
+        verbose=3,  # get the score as well during training
+        random_state=42
+    )
+
+    # Save the entire object
+    joblib.dump(random_search, 'svm_random_search_results.pkl')
+    
+    # Vectorize features
+    vec = DictVectorizer()
+    features_vectorized = vec.fit_transform(train_features)
+    
+    print("Training SVM model with hyperparameter tuning...")
+    model = random_search.fit(features_vectorized, train_targets)
+    
+    # Print the best parameters and score
+    print("Best parameters found:", model.best_params_)
+    print("Best cross-validation score:", model.best_score_)
+    print("SVM training completed")
+
+    with open('svm_best_model_estimator.pkl', 'wb') as f:
+        pickle.dump(model.best_estimator_, f)
+    with open ('svm_model_after_tuning.pkl', 'wb') as f:
+        pickle.dump(model, f)
+
+    return model.best_estimator_, vec
+
     
 def extract_features(inputfile):
     # copied from A1, and altered/extended
@@ -143,47 +212,22 @@ def create_classifier(train_features, train_targets, modelname):
         
 
     if modelname == 'SVM':
-        # Define the parameter space for random search
-        param_distributions = {
-            'C': uniform(0.1, 100.0),
-            'kernel': ['linear', 'rbf', 'sigmoid'],
-            'gamma': uniform(0.001, 1.0)
-        }
-        
-        # Initialize base SVM model
-        svm = SVC()
-        
-        # Initialize RandomizedSearchCV
-        random_search = RandomizedSearchCV(
-            svm,
-            param_distributions=param_distributions,
-            n_iter=5,  # Number of parameter settings sampled
-            cv=5,       # 5-fold cross-validation
-            n_jobs=-1,  # Use all available cores
-            verbose=3,  # get the score as well during training
-            random_state=42
+        # hyperparameter_tuning_svm(train_features, train_targets)
+        BEST_C = 15.699452033620265
+        BEST_KERNEL = 'linear'
+        BEST_GAMMA = 0.05908361216819946 # is not used by linear kernel, but kept for reference
+        svm = SVC(
+            C=BEST_C,
+            gamma=BEST_GAMMA,
+            kernel=BEST_KERNEL
         )
-
-        # Save the entire object
-        joblib.dump(random_search, 'svm_random_search_results.pkl')
-        
-        # Vectorize features
         vec = DictVectorizer()
         features_vectorized = vec.fit_transform(train_features)
-        
-        print("Training SVM model with hyperparameter tuning...")
-        model = random_search.fit(features_vectorized, train_targets)
-        
-        # Print the best parameters and score
-        print("Best parameters found:", model.best_params_)
-        print("Best cross-validation score:", model.best_score_)
+        print("Training SVM model...")
+        model = svm.fit(features_vectorized, train_targets)
         print("SVM training completed")
-
-        with open('svm_best_model_estimator.pkl', 'wb') as f:
-            pickle.dump(model.best_estimator_, f)
-        with open ('svm_model_after_tuning.pkl', 'wb') as f:
-            pickle.dump(model, f)
-
+        
+       
     if modelname == 'NB':
         print("Creating Bernoulli Naive Bayes model...")
         nb = BernoulliNB()
