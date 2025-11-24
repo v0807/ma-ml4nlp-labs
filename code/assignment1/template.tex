@@ -488,11 +488,20 @@ What the computer sees are these violation flags. If $\mathrm{Gender\_Violation}
 What a human sees is an immediate semantic and real-world absurdity (e.g., trying to refer to a table with the pronoun "he").
 The computer approximates this human constraint through a cascade of fallible preprocessing steps (NER to determine animacy, part-of-speech tagging to determine number) followed by a simple binary comparison.
 
-\subsection*{Assignment 3}
+\subsection*{Assignment 3 - K-nearest neighbours}
+A KNN classifier works as follows:
+for each new datapoint, it looks at the k (parameter that you can tune) closest datapoints that were already classified.
+It assigns the label to the new datapoint that is most common among those k neighbours.
 
+To illustrate this working, the new datapoint in the figure in the assignment forms an example.
+There are two green triangles surrounding our new datapoint and only one yellow square, so it would assign a green triangle in case k=3 (like shown in the figure).
+If k=number of total datapoints in the figure, the new label would get assigned a yellow square.
+This is because there are more yellow squares in the figure, than green triangles.
+If k=1, the new datapoint would get assigned a yellow square (the closest neighbour seems to be yellow, altough it was hard to see clearly in the figure).
 
-
-
+The result of picking a very small k, is a bigger risk op overfitting. The model becomes very sensitive for noise, because the outlier datapoints are weighing quite heavy.
+If k is set very large, it will always predict the most common label in the dataset, and it will not be sensitive to any patterns in the data.
+Its scope will be so broad, that it will fail to detect any boundaries, or patterns, resulting in an underfitted model.
 
 
 \clearpage
@@ -526,6 +535,7 @@ The computer approximates this human constraint through a cascade of fallible pr
             4     & Worked on assignment 2 hyperparameter tuning           & 6 hours (training and tuning took about 26h in total) \\
             4     & Updated the report for assignment 2                    & 2 hours                                               \\
             5     & Incorporated feedback for assignment 2 theoretical     & 0.5 hour                                              \\
+            5     & Did the theoretical part of assignment 3 KNN           & 0.5 hour                                              \\
             \midrule
             Total & 30.5 hours                                                                                                     \\
 
