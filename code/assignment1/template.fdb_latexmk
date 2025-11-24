@@ -1,20 +1,20 @@
 # Fdb version 3
-["bibtex template"] 1763459148 "template.aux" "template.bbl" "template" 1763459149
+["bibtex template"] 1763459148 "template.aux" "template.bbl" "template" 1763816969
   "./acl_natbib.bst" 1761109856 47709 d9d0ab22329e3318a3d1b2ae6abaab62 ""
   "references.bib" 1763200518 5664 0dd42f4c02edb46a3f653be4fcbaa200 ""
-  "template.aux" 1763459149 9612 5d8107ea078e0559d55099d78637d090 "pdflatex"
+  "template.aux" 1763816957 9612 5d8107ea078e0559d55099d78637d090 "pdflatex"
   (generated)
   "template.bbl"
   "template.blg"
-["pdflatex"] 1763459148 "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex" "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf" "template" 1763459149
+["pdflatex"] 1763816956 "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex" "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf" "template" 1763816969
   "../assignment2/figures/confusion_matrix_normalized_NB.png" 1763040612 100040 a8aa6fd111faccc96b159b144f073898 ""
   "../assignment2/figures/confusion_matrix_normalized_SVM.png" 1763401138 98012 0b9c7d5d6cc3093af349589a39dbe9d4 ""
   "../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png" 1763290501 102128 8b9e7e0ab0952e9d05f2942c4b4ee838 ""
   "../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png" 1763458758 101574 2a89e44999d0a211044198b1684daae5 ""
   "../assignment2/figures/confusion_matrix_normalized_logreg.png" 1763030101 98357 2666db83faaf160b60d570f232c7912c ""
   "/etc/texmf/web2c/texmf.cnf" 1758975919 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux" 1763459149 9612 5d8107ea078e0559d55099d78637d090 ""
-  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex" 1763459146 56643 4fd6d29d0b748cc7f76d3cae0e597b5a ""
+  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux" 1763816957 9612 5d8107ea078e0559d55099d78637d090 ""
+  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.tex" 1763816969 58289 1e64e5465239f4679c6783c58aa68926 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/courier/pcrr8r.tfm" 1136768653 1292 bd42be2f344128bff6d35d98474adfe3 ""
@@ -159,14 +159,14 @@
   "figures/tokens_before_NE.png" 1762521211 38728 5724f39feaf3bfc5983e4de6a7907c18 ""
   "figures/word_freq_with_IOB.png" 1762521379 161516 4b2954179f1a58221e39f3d575906c18 ""
   "figures/word_freq_without_IOB.png" 1762521349 161516 4b2954179f1a58221e39f3d575906c18 ""
-  "template.aux" 1763459149 9612 5d8107ea078e0559d55099d78637d090 "pdflatex"
+  "template.aux" 1763816957 9612 5d8107ea078e0559d55099d78637d090 "pdflatex"
   "template.bbl" 1763459148 1958 555fa647f096c988b412ed5a2af5737a "bibtex template"
-  "template.out" 1763459149 914 a19d83aad734b48a13341a08d3e29f61 "pdflatex"
-  "template.tex" 1763459146 56643 4fd6d29d0b748cc7f76d3cae0e597b5a ""
+  "template.out" 1763816957 914 a19d83aad734b48a13341a08d3e29f61 "pdflatex"
+  "template.tex" 1763816969 58289 1e64e5465239f4679c6783c58aa68926 ""
   (generated)
-  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf"
-  "template.aux"
   "template.out"
   "template.log"
-  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.log"
+  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf"
   "template.pdf"
+  "/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.log"
+  "template.aux"

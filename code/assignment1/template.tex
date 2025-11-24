@@ -444,6 +444,18 @@ The human uses linguistic insight to understand the message's meaning, context, 
 In contrast, the computer only performs mathematical algebra on the numbers, learning that the presence of the feature associated with "brilliant" has a specific high positive weight, which pushes the aggregate score above the positive threshold.
 The system's success is therefore entirely dependent on the quality of the initial human-engineered features that capture the necessary linguistic cues, so this part of the assignment is very important to me.
 
+The machine's interaction with the feature vector ($\mathbf{x}$) reveals its non-linguistic approach to complex phenomena.
+The system does not "see" negation or composition in a semantic sense; instead, it relies on the algebraic combination of specific, engineered features.
+For instance, a human understands that the word "not" reverses the meaning of "good."
+The machine, however, only registers the co-occurrence of the feature $\text{Unigram: "good"}$ (which has a high positive weight, $w_{\text{good}}$) and the feature $\text{Bigram: "not good"}$ (which has a corresponding high negative weight, $w_{\text{"not good"}}$).
+The sentiment reversal is a mathematical consequence of the learned weights, not a linguistic understanding of the negation's scope.
+The use of $n$-grams, like bigrams, is the machine's primary proxy for approximating scope and composition, as it links adjacent words to capture local context (e.g., distinguishing "New York" from "New" + "shoes").
+While beneficial for capturing composition, including bigrams vastly increases the size of the feature vocabulary.
+This leads to a higher-dimensional vector space that is highly sparse.
+This means the vector $\mathbf{x}$ contains far more zero-entries.
+This increased sparsity poses a challenge for the classifier, as it makes it harder to gather enough training examples for each specific $n$-gram feature to learn a reliable, non-zero weight.
+Also training time will increase, because the model has to process many more features.
+
 \subsection*{1.B.1: Useful features according to rule based system}
 Central to the paper of \cite{lee-etal-2013-deterministic} is a deterministic coreference solution that starts with mention detection.
 In the mention detection phase, nominal and pronominal mentions are identified using a high recall algorithm.
@@ -513,8 +525,9 @@ The computer approximates this human constraint through a cascade of fallible pr
             4     & Worked on assignment 2 word embeddings                 & 3 hours                                               \\
             4     & Worked on assignment 2 hyperparameter tuning           & 6 hours (training and tuning took about 26h in total) \\
             4     & Updated the report for assignment 2                    & 2 hours                                               \\
+            5     & Incorporated feedback for assignment 2 theoretical     & 0.5 hour                                              \\
             \midrule
-            Total & 30 hours                                                                                                       \\
+            Total & 30.5 hours                                                                                                     \\
 
             \bottomrule
         \end{tabular}

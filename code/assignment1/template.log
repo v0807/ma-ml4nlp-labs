@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  18 NOV 2025 10:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2025.10.28)  22 NOV 2025 14:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -535,49 +535,47 @@ Underfull \hbox (badness 1072) in paragraph at lines 33--39
 
 ] [6
 
-]
-Underfull \hbox (badness 1092) in paragraph at lines 461--469
+] [7]
+Underfull \hbox (badness 1092) in paragraph at lines 473--481
 \T1/ptm/m/n/10.95 (+20) In this sec-tion I dis-cuss two of the fea-tures
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 461--469
+Underfull \hbox (badness 10000) in paragraph at lines 473--481
 \T1/ptm/m/n/10.95 (+20) cal-cu-lates: $[]\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 M[]; M[]\OT1/cmr/m/n/10.95 )$
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 470--478
+
+Underfull \hbox (badness 10000) in paragraph at lines 482--490
 []\T1/ptm/b/n/10.95 Pronominal Agree-ment \T1/ptm/m/n/10.95 (+20) The Pronom-i-nal
  []
 
 
-Underfull \hbox (badness 1838) in paragraph at lines 470--478
+Underfull \hbox (badness 1838) in paragraph at lines 482--490
 \T1/ptm/m/n/10.95 (+20) Agree-ment fea-ture, presents a more dif-fi-cult
  []
 
 
-Underfull \hbox (badness 1019) in paragraph at lines 470--478
+Underfull \hbox (badness 1019) in paragraph at lines 482--490
 \T1/ptm/m/n/10.95 (+20) then gen-er-ates bi-nary con-straint fea-tures like:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 470--478
+Underfull \hbox (badness 10000) in paragraph at lines 482--490
 []\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 M[]; E[]\OT1/cmr/m/n/10.95 )$ \T1/ptm/m/n/10.95 (+20) and
  []
 
 
-Underfull \hbox (badness 1231) in paragraph at lines 470--478
+Underfull \hbox (badness 1231) in paragraph at lines 482--490
 \T1/ptm/m/n/10.95 (+20) com-puter ap-prox-i-mates this hu-man con-straint
  []
 
 
-Underfull \hbox (badness 4492) in paragraph at lines 470--478
+Underfull \hbox (badness 4492) in paragraph at lines 482--490
 \T1/ptm/m/n/10.95 (+20) (NER to de-ter-mine an-i-macy, part-of-speech
  []
 
-[8
-
-] [9
+[8] [9
 
 
 ] [10
@@ -586,38 +584,38 @@ Underfull \hbox (badness 4492) in paragraph at lines 470--478
 <figures/POS.png, id=197, 930.8376pt x 388.0899pt>
 File: figures/POS.png Graphic file (type png)
 <use figures/POS.png>
-Package pdftex.def Info: figures/POS.png  used on input line 585.
+Package pdftex.def Info: figures/POS.png  used on input line 598.
 (pdftex.def)             Requested size: 432.48051pt x 180.31189pt.
 <figures/capitalized.png, id=199, 431.4519pt x 314.3745pt>
 File: figures/capitalized.png Graphic file (type png)
 <use figures/capitalized.png>
-Package pdftex.def Info: figures/capitalized.png  used on input line 593.
+Package pdftex.def Info: figures/capitalized.png  used on input line 606.
 (pdftex.def)             Requested size: 432.48051pt x 315.13164pt.
 <figures/tokens_before_NE.png, id=202, 641.0349pt x 375.804pt>
 File: figures/tokens_before_NE.png Graphic file (type png)
 <use figures/tokens_before_NE.png>
-Package pdftex.def Info: figures/tokens_before_NE.png  used on input line 603.
+Package pdftex.def Info: figures/tokens_before_NE.png  used on input line 616.
 (pdftex.def)             Requested size: 432.48051pt x 253.53633pt.
 <figures/NE_preciding_tokes.png, id=203, 641.0349pt x 369.2997pt>
 File: figures/NE_preciding_tokes.png Graphic file (type png)
 <use figures/NE_preciding_tokes.png>
-Package pdftex.def Info: figures/NE_preciding_tokes.png  used on input line 609.
+Package pdftex.def Info: figures/NE_preciding_tokes.png  used on input line 622.
 (pdftex.def)             Requested size: 432.48051pt x 249.1482pt.
 <figures/word_freq_with_IOB.png, id=204, 714.7503pt x 1293.633pt>
 File: figures/word_freq_with_IOB.png Graphic file (type png)
 <use figures/word_freq_with_IOB.png>
-Package pdftex.def Info: figures/word_freq_with_IOB.png  used on input line 617.
+Package pdftex.def Info: figures/word_freq_with_IOB.png  used on input line 630.
 (pdftex.def)             Requested size: 364.19667pt x 659.17166pt.
 <figures/word_freq_without_IOB.png, id=207, 714.7503pt x 1293.633pt>
 File: figures/word_freq_without_IOB.png Graphic file (type png)
 <use figures/word_freq_without_IOB.png>
-Package pdftex.def Info: figures/word_freq_without_IOB.png  used on input line 626.
+Package pdftex.def Info: figures/word_freq_without_IOB.png  used on input line 639.
 (pdftex.def)             Requested size: 364.19667pt x 659.17166pt.
  [11 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/POS.png>] [12 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/capitalized.png> </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/tokens_before_NE.png>] [13 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/NE_preciding_tokes.png>] [14 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_with_IOB.png>] [15 </home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/figures/word_freq_without_IOB.png>]
 <../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png, id=253, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png  used on input line 734.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png  used on input line 747.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 
 
@@ -626,7 +624,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 <../assignment2/figures/confusion_matrix_normalized_SVM.png, id=255, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_SVM.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_SVM.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM.png  used on input line 769.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM.png  used on input line 782.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -634,27 +632,27 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <../assignment2/figures/confusion_matrix_normalized_NB.png, id=256, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_NB.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_NB.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_NB.png  used on input line 801.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_NB.png  used on input line 814.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 [16] [17 <../assignment2/figures/confusion_matrix_normalized_SVM_untuned.png> <../assignment2/figures/confusion_matrix_normalized_SVM.png>] [18]
 <../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png, id=279, 867.24pt x 722.7pt>
 File: ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png Graphic file (type png)
 <use ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png>
-Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png  used on input line 825.
+Package pdftex.def Info: ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png  used on input line 838.
 (pdftex.def)             Requested size: 364.19667pt x 303.49884pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 855.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 868.
 [19 <../assignment2/figures/confusion_matrix_normalized_NB.png>] [20 <../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 855.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 868.
  (/home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 855.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 855.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 868.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 868.
 Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: A19D83AAD734B48A13341A08D3E29F61;914.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 855.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 868.
  ) 
 Here is how much of TeX's memory you used:
  11545 strings out of 483107
@@ -665,7 +663,7 @@ Here is how much of TeX's memory you used:
  59 hyphenation exceptions out of 8191
  49i,10n,46p,532b,451s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf (20 pages, 945277 bytes).
+Output written on /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.pdf (20 pages, 947013 bytes).
 PDF statistics:
  342 PDF objects out of 1000 (max. 8388607)
  282 compressed objects within 3 object streams
