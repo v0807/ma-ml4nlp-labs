@@ -514,30 +514,36 @@ Its scope will be so broad, that it will fail to detect any boundaries, or patte
     \small{
         \begin{tabular}{lll}
             \toprule
-            Week  & Task                                                   & Time                                                  \\
+            Week  & Task                                                          & Time                                                  \\
             \midrule
-            1     & Understand the assignment and getting everything setup & 30 minutes                                            \\
-            1     & Watch the videos of module 1                           & 2 hours                                               \\
-            1     & Finish 2.1 about understanding NER and CoNLL           & 1.5 hours                                             \\
-            1     & Work on 2.2.1 further exploration of the data          & 1 hour                                                \\
-            1     & Work on 2.2.2 feature hypothesis                       & 1 hour                                                \\
-            1     & Started with 3.1, description of precision, recall etc & 0.5 hour                                              \\
-            2     & Did all the week 2 tasks for assignment 1              & 2 hours                                               \\
-            2     & Incorporated the feedback for assignment 1             & 1.5 hours                                             \\
-            3     & Worked on the theoretical step of assignment 2         & 1 hour                                                \\
-            3     & Did a brief literature study for efficient features    & 1.5 hours                                             \\
-            3     & Implemented the features from the literature study     & 2.5 hours                                             \\
-            3     & Trained the models SVM and NB                          & 1.5 hours                                             \\
-            3     & Evaluated the models and created confusion matrices    & 1.5 hours                                             \\
-            3     & Updated the report for assignment 2                    & 2 hours                                               \\
-            4     & Worked on 1.B theoretical part                         & 1 hour                                                \\
-            4     & Worked on assignment 2 word embeddings                 & 3 hours                                               \\
-            4     & Worked on assignment 2 hyperparameter tuning           & 6 hours (training and tuning took about 26h in total) \\
-            4     & Updated the report for assignment 2                    & 2 hours                                               \\
-            5     & Incorporated feedback for assignment 2 theoretical     & 0.5 hour                                              \\
-            5     & Did the theoretical part of assignment 3 KNN           & 0.5 hour                                              \\
+            1     & Understand the assignment and getting everything setup        & 30 minutes                                            \\
+            1     & Watch the videos of module 1                                  & 2 hours                                               \\
+            1     & Finish 2.1 about understanding NER and CoNLL                  & 1.5 hours                                             \\
+            1     & Work on 2.2.1 further exploration of the data                 & 1 hour                                                \\
+            1     & Work on 2.2.2 feature hypothesis                              & 1 hour                                                \\
+            1     & Started with 3.1, description of precision, recall etc        & 0.5 hour                                              \\
+            2     & Did all the week 2 tasks for assignment 1                     & 2 hours                                               \\
+            2     & Incorporated the feedback for assignment 1                    & 1.5 hours                                             \\
+            3     & Worked on the theoretical step of assignment 2                & 1 hour                                                \\
+            3     & Did a brief literature study for efficient features           & 1.5 hours                                             \\
+            3     & Implemented the features from the literature study            & 2.5 hours                                             \\
+            3     & Trained the models SVM and NB                                 & 1.5 hours                                             \\
+            3     & Evaluated the models and created confusion matrices           & 1.5 hours                                             \\
+            3     & Updated the report for assignment 2                           & 2 hours                                               \\
+            4     & Worked on 1.B theoretical part                                & 1 hour                                                \\
+            4     & Worked on assignment 2 word embeddings                        & 3 hours                                               \\
+            4     & Worked on assignment 2 hyperparameter tuning                  & 6 hours (training and tuning took about 26h in total) \\
+            4     & Updated the report for assignment 2                           & 2 hours                                               \\
+            5     & Incorporated feedback for assignment 2 theoretical            & 0.5 hour                                              \\
+            5     & Did the theoretical part of assignment 3 KNN                  & 0.5 hour                                              \\
+            5     & Programmed the feature ablation for 5 combinations            & 1 hours                                               \\
+            5     & Trained and evaluated the feature ablation models             & 2.5 hours (run time)                                  \\
+            5     & Updated the feature ablation with about 15 new configurations & 0.5 hours                                             \\
+            5     & Let the new feature ablation run                              & 6 hours (run time)                                    \\
+            5     & Updated feature ablation text for assignment 3                & 2 hours                                               \\
+            5     & Started studying for the final exam                           & 5 hours                                               \\
             \midrule
-            Total & 30.5 hours                                                                                                     \\
+            Total & 41.5 hours                                                                                                            \\
 
             \bottomrule
         \end{tabular}
@@ -873,6 +879,47 @@ Note, I used a linear kernel for the SVM with word embeddings after the regular 
         \textbf{weighted avg} & 0.932                & 0.937           & 0.934             & 51362            \\
         \bottomrule
     \end{tabular}
+\end{table}
+
+\subsection*{Assignment 3} Feature ablation results
+To perform feature ablation, I created combinations of the features used in the (linear) SVM model.
+I picked the linear SVM since it performed quick and good in the previous assignment, and since I wanted to check a lot of combinations I needed something quick.
+The combinations that I picked are shown in table \ref{tab:feature ablation combinations} along with their results.
+
+\begin{table}[h!]
+    \centering
+    \caption{Feature Ablation Analysis Summary}
+    \label{tab:feature_ablation}
+    \resizebox{\textwidth}{!}{%
+        \begin{tabular}{l c c c c c c c c c c c}
+            \toprule
+            \textbf{Feature Combination} & \multicolumn{7}{c}{\textbf{Active Features}} & \multirow{2}{*}{\textbf{Weighted F1}} & \multirow{2}{*}{\textbf{Weighted Recall}} & \multirow{2}{*}{\textbf{Weighted Precision}}                                                                                                      \\
+            \cmidrule{2-8}
+                                         & \textbf{emb}                                 & \textbf{tok}                          & \textbf{pos}                              & \textbf{case}                                & \textbf{dig} & \textbf{posi} & \textbf{prev\_p} &                &                &                \\
+            \midrule
+            \textbf{ALL\_FEATURES}       & \checkmark                                   & \checkmark                            & \checkmark                                & \checkmark                                   & \checkmark   & \checkmark    & \checkmark       & \textbf{0.970} & \textbf{0.971} & \textbf{0.970} \\
+            \midrule
+            EMBEDDINGS\_TOKEN\_PREV\_POS & \checkmark                                   & \checkmark                            & \texttimes                                & \texttimes                                   & \texttimes   & \texttimes    & \checkmark       & 0.965          & 0.966          & 0.965          \\
+            ONLY\_TRADITIONAL            & \texttimes                                   & \checkmark                            & \checkmark                                & \checkmark                                   & \checkmark   & \checkmark    & \checkmark       & 0.961          & 0.962          & 0.962          \\
+            NO\_POSITION                 & \checkmark                                   & \checkmark                            & \checkmark                                & \checkmark                                   & \checkmark   & \texttimes    & \texttimes       & 0.955          & 0.956          & 0.955          \\
+            EMBEDDINGS\_TOKEN\_CASE      & \checkmark                                   & \checkmark                            & \texttimes                                & \checkmark                                   & \texttimes   & \texttimes    & \texttimes       & 0.953          & 0.954          & 0.954          \\
+            EMBEDDINGS\_PREV\_POS        & \checkmark                                   & \texttimes                            & \texttimes                                & \texttimes                                   & \texttimes   & \texttimes    & \checkmark       & 0.952          & 0.954          & 0.952          \\
+            EMBEDDINGS\_TOKEN\_POS       & \checkmark                                   & \checkmark                            & \checkmark                                & \texttimes                                   & \texttimes   & \texttimes    & \texttimes       & 0.952          & 0.954          & 0.951          \\
+            EMBEDDINGS\_TOKEN            & \checkmark                                   & \checkmark                            & \texttimes                                & \texttimes                                   & \texttimes   & \texttimes    & \texttimes       & 0.950          & 0.951          & 0.949          \\
+            EMBEDDINGS\_TOKEN\_POSITION  & \checkmark                                   & \checkmark                            & \texttimes                                & \texttimes                                   & \texttimes   & \checkmark    & \texttimes       & 0.950          & 0.952          & 0.949          \\
+            EMBEDDINGS\_TOKEN\_DIGITS    & \checkmark                                   & \checkmark                            & \texttimes                                & \texttimes                                   & \checkmark   & \texttimes    & \texttimes       & 0.950          & 0.952          & 0.949          \\
+            EMBEDDINGS\_POS\_CASE        & \checkmark                                   & \texttimes                            & \checkmark                                & \checkmark                                   & \texttimes   & \texttimes    & \texttimes       & 0.945          & 0.947          & 0.945          \\
+            EMBEDDINGS\_POS\_DIGITS      & \checkmark                                   & \texttimes                            & \checkmark                                & \texttimes                                   & \checkmark   & \texttimes    & \texttimes       & 0.942          & 0.944          & 0.942          \\
+            EMBEDDINGS\_POS              & \checkmark                                   & \texttimes                            & \checkmark                                & \texttimes                                   & \texttimes   & \texttimes    & \texttimes       & 0.939          & 0.942          & 0.937          \\
+            EMBEDDINGS\_POS\_POSITION    & \checkmark                                   & \texttimes                            & \checkmark                                & \texttimes                                   & \texttimes   & \checkmark    & \texttimes       & 0.939          & 0.942          & 0.938          \\
+            EMBEDDINGS\_CASE             & \checkmark                                   & \texttimes                            & \texttimes                                & \checkmark                                   & \texttimes   & \texttimes    & \texttimes       & 0.941          & 0.942          & 0.942          \\
+            EMBEDDINGS\_DIGITS           & \checkmark                                   & \texttimes                            & \texttimes                                & \texttimes                                   & \checkmark   & \texttimes    & \texttimes       & 0.934          & 0.938          & 0.933          \\
+            EMBEDDINGS\_POSITION         & \checkmark                                   & \texttimes                            & \texttimes                                & \texttimes                                   & \texttimes   & \checkmark    & \texttimes       & 0.934          & 0.938          & 0.933          \\
+            ONLY\_EMBEDDINGS             & \checkmark                                   & \texttimes                            & \texttimes                                & \texttimes                                   & \texttimes   & \texttimes    & \texttimes       & 0.934          & 0.937          & 0.932          \\
+            ONLY\_MORPHOLOGICAL          & \texttimes                                   & \texttimes                            & \checkmark                                & \checkmark                                   & \checkmark   & \texttimes    & \texttimes       & 0.836          & 0.850          & 0.847          \\
+            \bottomrule
+        \end{tabular}
+    }
 \end{table}
 
 \end{document}
