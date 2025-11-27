@@ -1,0 +1,21 @@
+FEATURE ABLATION ANALYSIS RESULTS
+================================
+
+Experiment conducted at: 2025-11-25 19:46:43
+Training file: ./data/conll2003/conll2003.train.conll
+Development file: ./data/conll2003/conll2003.dev.conll
+
+
+
+Feature Combination: ALL_FEATURES
+===============================
+Active features:
+- embeddings: ✓
+- token: ✓
+- pos: ✓
+- case: ✓
+- digits: ✓
+- position: ✓
+- prev_pos: ✓
+
+Feature matrix shape: (203621, 24018)

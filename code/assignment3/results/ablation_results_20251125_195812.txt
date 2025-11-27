@@ -1,0 +1,183 @@
+FEATURE ABLATION ANALYSIS RESULTS
+================================
+
+Experiment conducted at: 2025-11-25 19:58:12
+Training file: ./data/conll2003/conll2003.train.conll
+Development file: ./data/conll2003/conll2003.dev.conll
+
+
+
+Feature Combination: ALL_FEATURES
+===============================
+Active features:
+- embeddings: ✓
+- token: ✓
+- pos: ✓
+- case: ✓
+- digits: ✓
+- position: ✓
+- prev_pos: ✓
+
+Feature matrix shape: (203621, 24018)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.879     0.882     0.881      1837
+      B-MISC      0.877     0.790     0.831       922
+       B-ORG      0.820     0.817     0.819      1341
+       B-PER      0.896     0.929     0.912      1842
+       I-LOC      0.732     0.743     0.737       257
+      I-MISC      0.815     0.587     0.682       346
+       I-ORG      0.778     0.625     0.693       751
+       I-PER      0.909     0.932     0.920      1307
+           O      0.991     0.997     0.994     42759
+
+    accuracy                          0.971     51362
+   macro avg      0.855     0.811     0.830     51362
+weighted avg      0.970     0.971     0.970     51362
+
+Confusion matrix saved as: figures/confusion_matrix_all_features.png
+
+
+Feature Combination: ONLY_EMBEDDINGS
+==================================
+Active features:
+- embeddings: ✓
+- token: ✗
+- pos: ✗
+- case: ✗
+- digits: ✗
+- position: ✗
+- prev_pos: ✗
+
+Feature matrix shape: (203621, 300)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.818     0.795     0.807      1837
+      B-MISC      0.784     0.694     0.736       922
+       B-ORG      0.697     0.644     0.669      1341
+       B-PER      0.783     0.710     0.745      1842
+       I-LOC      0.608     0.560     0.583       257
+      I-MISC      0.677     0.431     0.527       346
+       I-ORG      0.610     0.361     0.454       751
+       I-PER      0.598     0.566     0.582      1307
+           O      0.974     0.996     0.985     42759
+
+    accuracy                          0.937     51362
+   macro avg      0.728     0.640     0.676     51362
+weighted avg      0.932     0.937     0.934     51362
+
+Confusion matrix saved as: figures/confusion_matrix_only_embeddings.png
+
+
+Feature Combination: ONLY_TRADITIONAL
+===================================
+Active features:
+- embeddings: ✗
+- token: ✓
+- pos: ✓
+- case: ✓
+- digits: ✓
+- position: ✓
+- prev_pos: ✓
+
+Feature matrix shape: (203621, 23718)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.850     0.842     0.846      1837
+      B-MISC      0.876     0.753     0.810       922
+       B-ORG      0.802     0.736     0.767      1341
+       B-PER      0.813     0.874     0.842      1842
+       I-LOC      0.770     0.728     0.748       257
+      I-MISC      0.835     0.555     0.667       346
+       I-ORG      0.828     0.551     0.662       751
+       I-PER      0.792     0.943     0.861      1307
+           O      0.990     0.996     0.993     42759
+
+    accuracy                          0.962     51362
+   macro avg      0.839     0.775     0.800     51362
+weighted avg      0.962     0.962     0.961     51362
+
+Confusion matrix saved as: figures/confusion_matrix_only_traditional.png
+
+
+Feature Combination: NO_POSITION
+==============================
+Active features:
+- embeddings: ✓
+- token: ✓
+- pos: ✓
+- case: ✓
+- digits: ✓
+- position: ✗
+- prev_pos: ✗
+
+Feature matrix shape: (203621, 23971)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.851     0.863     0.857      1837
+      B-MISC      0.834     0.797     0.815       922
+       B-ORG      0.770     0.747     0.759      1341
+       B-PER      0.836     0.761     0.797      1842
+       I-LOC      0.687     0.700     0.694       257
+      I-MISC      0.798     0.526     0.634       346
+       I-ORG      0.667     0.478     0.557       751
+       I-PER      0.655     0.798     0.720      1307
+           O      0.990     0.996     0.993     42759
+
+    accuracy                          0.956     51362
+   macro avg      0.788     0.741     0.758     51362
+weighted avg      0.955     0.956     0.955     51362
+
+Confusion matrix saved as: figures/confusion_matrix_no_position.png
+
+
+Feature Combination: ONLY_MORPHOLOGICAL
+=====================================
+Active features:
+- embeddings: ✗
+- token: ✗
+- pos: ✓
+- case: ✓
+- digits: ✓
+- position: ✗
+- prev_pos: ✗
+
+Feature matrix shape: (203621, 48)
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.205     0.925     0.335      1837
+      B-MISC      0.657     0.454     0.537       922
+       B-ORG      0.250     0.003     0.006      1341
+       B-PER      0.000     0.000     0.000      1842
+       I-LOC      0.000     0.000     0.000       257
+      I-MISC      0.000     0.000     0.000       346
+       I-ORG      0.218     0.048     0.079       751
+       I-PER      0.000     0.000     0.000      1307
+           O      0.983     0.971     0.977     42759
+
+    accuracy                          0.850     51362
+   macro avg      0.257     0.267     0.215     51362
+weighted avg      0.847     0.850     0.836     51362
+
+Confusion matrix saved as: figures/confusion_matrix_only_morphological.png
+
+
+SUMMARY
+=======
+Performance comparison across feature combinations:
+
+all_features: F1-score = 0.970
+only_traditional: F1-score = 0.961
+no_position: F1-score = 0.955
+only_embeddings: F1-score = 0.934
+only_morphological: F1-score = 0.836
