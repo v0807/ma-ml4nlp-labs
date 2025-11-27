@@ -135,178 +135,58 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
     
     # Define feature combinations to test
     feature_combinations = [
-        # Single feature combinations
+        # Adding case
         {
-            'name': 'embeddings_token',
+            'name': 'embeddings_token_prev_pos_case',
+            'flags': {
+                'embeddings': True,
+                'token': True,
+                'pos': False,
+                'case': True,
+                'digits': False,
+                'position': False,
+                'prev_pos': True
+            }
+        },
+        # Adding digits
+        {
+            'name': 'embeddings_token_prev_pos_digits',
+            'flags': {
+                'embeddings': True,
+                'token': True,
+                'pos': False,
+                'case': False,
+                'digits': True,
+                'position': False,
+                'prev_pos': True
+            }
+        },
+        # Adding position
+        {
+            'name': 'embeddings_token_prev_pos_position',
             'flags': {
                 'embeddings': True,
                 'token': True,
                 'pos': False,
                 'case': False,
                 'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_pos',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': True,
-                'case': False,
-                'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_case',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': False,
-                'case': True,
-                'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_digits',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': False,
-                'case': False,
-                'digits': True,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_position',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': False,
-                'case': False,
-                'digits': False,
                 'position': True,
-                'prev_pos': False
+                'prev_pos': True
             }
         },
+        # Adding pos
         {
-            'name': 'embeddings_prev_pos',
+            'name': 'embeddings_token_prev_pos_pos',
             'flags': {
                 'embeddings': True,
-                'token': False,
-                'pos': False,
+                'token': True,
+                'pos': True,
                 'case': False,
                 'digits': False,
                 'position': False,
                 'prev_pos': True
             }
         },
-        # Two feature combinations - Core features
-        {
-            'name': 'embeddings_token_pos',
-            'flags': {
-                'embeddings': True,
-                'token': True,
-                'pos': True,
-                'case': False,
-                'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_token_case',
-            'flags': {
-                'embeddings': True,
-                'token': True,
-                'pos': False,
-                'case': True,
-                'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_pos_case',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': True,
-                'case': True,
-                'digits': False,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        # Two feature combinations - With position features
-        {
-            'name': 'embeddings_token_position',
-            'flags': {
-                'embeddings': True,
-                'token': True,
-                'pos': False,
-                'case': False,
-                'digits': False,
-                'position': True,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_pos_position',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': True,
-                'case': False,
-                'digits': False,
-                'position': True,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_token_prev_pos',
-            'flags': {
-                'embeddings': True,
-                'token': True,
-                'pos': False,
-                'case': False,
-                'digits': False,
-                'position': False,
-                'prev_pos': True
-            }
-        },
-        # Two feature combinations - With digits
-        {
-            'name': 'embeddings_token_digits',
-            'flags': {
-                'embeddings': True,
-                'token': True,
-                'pos': False,
-                'case': False,
-                'digits': True,
-                'position': False,
-                'prev_pos': False
-            }
-        },
-        {
-            'name': 'embeddings_pos_digits',
-            'flags': {
-                'embeddings': True,
-                'token': False,
-                'pos': True,
-                'case': False,
-                'digits': True,
-                'position': False,
-                'prev_pos': False
-            }
-        }
     ]
     
     results = {}

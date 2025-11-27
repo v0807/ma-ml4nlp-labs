@@ -285,6 +285,9 @@ INPUT ../assignment2/figures/confusion_matrix_normalized_NB.png
 INPUT /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png
 INPUT ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png
 INPUT ../assignment2/figures/confusion_matrix_normalized_SVM_embeddings.png
+INPUT /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/../assignment3/figures/confusion_matrix_all_features.png
+INPUT ../assignment3/figures/confusion_matrix_all_features.png
+INPUT ../assignment3/figures/confusion_matrix_all_features.png
 INPUT /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.aux
 INPUT /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.out
 INPUT /home/vera/MA/ML4NLP/ma-ml4nlp-labs-1/code/assignment1/template.out
