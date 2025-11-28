@@ -1,0 +1,85 @@
+MODEL COMPARISON ANALYSIS RESULTS
+================================
+
+Experiment conducted at: 2025-11-27 19:34:56
+Training file: ./data/conll2003/conll2003.train.conll
+Development file: ./data/conll2003/conll2003.dev.conll
+
+
+
+Model: SVM_optimal
+==================
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.869     0.894     0.881      1837
+      B-MISC      0.843     0.800     0.821       922
+       B-ORG      0.765     0.815     0.789      1341
+       B-PER      0.916     0.891     0.903      1842
+       I-LOC      0.708     0.755     0.731       257
+      I-MISC      0.777     0.645     0.705       346
+       I-ORG      0.757     0.617     0.679       751
+       I-PER      0.908     0.906     0.907      1307
+           O      0.992     0.996     0.994     42759
+
+    accuracy                          0.969     51362
+   macro avg      0.837     0.813     0.823     51362
+weighted avg      0.968     0.969     0.968     51362
+
+Confusion matrix saved as: figures/confusion_matrix_SVM_optimal.png
+
+
+Model: LogisticRegression
+=========================
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.891     0.874     0.882      1837
+      B-MISC      0.899     0.774     0.832       922
+       B-ORG      0.778     0.830     0.803      1341
+       B-PER      0.909     0.876     0.892      1842
+       I-LOC      0.771     0.708     0.738       257
+      I-MISC      0.775     0.618     0.688       346
+       I-ORG      0.759     0.607     0.675       751
+       I-PER      0.842     0.929     0.883      1307
+           O      0.991     0.996     0.994     42759
+
+    accuracy                          0.968     51362
+   macro avg      0.846     0.801     0.821     51362
+weighted avg      0.967     0.968     0.967     51362
+
+Confusion matrix saved as: figures/confusion_matrix_LogisticRegression.png
+
+
+Model: NaiveBayes
+=================
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       B-LOC      0.787     0.768     0.777      1837
+      B-MISC      0.686     0.615     0.648       922
+       B-ORG      0.303     0.750     0.432      1341
+       B-PER      0.808     0.709     0.755      1842
+       I-LOC      0.811     0.167     0.277       257
+      I-MISC      0.655     0.367     0.470       346
+       I-ORG      0.212     0.565     0.309       751
+       I-PER      0.721     0.725     0.723      1307
+           O      0.986     0.928     0.956     42759
+
+    accuracy                          0.886     51362
+   macro avg      0.663     0.622     0.594     51362
+weighted avg      0.928     0.886     0.901     51362
+
+Confusion matrix saved as: figures/confusion_matrix_NaiveBayes.png
+
+
+SUMMARY
+=======
+Performance comparison across models:
+
+SVM_optimal: F1-score = 0.968
+LogisticRegression: F1-score = 0.967
+NaiveBayes: F1-score = 0.901

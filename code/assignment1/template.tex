@@ -329,17 +329,21 @@ The results of these combinations are shown in table \ref{tab:feature_ablation}.
 The most valuable feature seems to be the token itself, since removing it causes a big drop in performance.
 The previous part of speech tag, also has a good impact on the performance, since removing it causes a drop of 2 F1 points.
 A lot less impact is made by digits and case. It seems that without word embedding or token, the results are dropping.
-
-
-
+After concluding that the \texttt{all\_features} configuration seemed to perform best for the linear SVM model, this configuration was used for the other models discussed in the paper as well.
+The results of these models can be found in \ref{tab:all_features_model_comparison}.
+With these set of features, the best performing one seems to be the SVM with tuned hyperparameters, closely followed by Logistic Regression.
+Naive bayes is still lagging behind quite a bit. Comparing to the linear SVM before, the performance has dropped slightly.
 
 \section{Error Analysis}
+Our best performing model was the linear SVM with all features. The confusion matrix of this model can be found in figure \ref{fig:confusion_matrix_SVM_tuned_all_features}.
 
-\textcolor{magenta}{Length: ± 1.5-2 columns for Error Analysis.}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.95\linewidth]{../assignment3/figures/confusion_matrix_all_features.png}
+    \caption{Confusion matrix for Linear SVM model with all features.}
+    \label{fig:confusion_matrix_SVM_tuned_all_features}
+\end{figure}
 
-\begin{itemize}
-    \item [] \textit{Assignment 3}: beyond the confusion matrix
-\end{itemize}
 
 
 \section{Discussion}
@@ -898,6 +902,8 @@ In the figures folder for A3, they are all present, but in this report I will us
 Interestingly enough, the best performing model is the one with all features included. It is only a small difference though compared to the combination that doesn't use POS, digits and positions.
 From this we can conclude that the pos tag itself is not that important, but the preceding pos tag is.
 The confusion matrix for the best performing model is shown in figure \ref{fig:confusion_matrix_feature_ablation_best}.
+It shows that B-MISC and I-MISC are the hardest to predict correctly.
+
 
 \begin{figure}
     \centering
@@ -905,9 +911,6 @@ The confusion matrix for the best performing model is shown in figure \ref{fig:c
     \caption{Confusion matrix for SVM model with all features.}
     \label{fig:confusion_matrix_feature_ablation_best}
 \end{figure}
-
-
-
 
 \begin{table}[h!]
     \centering
@@ -949,6 +952,26 @@ The confusion matrix for the best performing model is shown in figure \ref{fig:c
     }
 \end{table}
 
+After analyzing which features seemed to work best for the linear SVM, I wanted to see how these features would perform in a Logistic Regression model, SVM with the hypertuned parameter and Naive Bayes.
+The best performing set was the all features set, so I used that one to test with the other classifiers.
+The results are shown in table \ref{tab:all_features_model_comparison}.
+With these set of features, the best performing one seems to be the SVM with tuned hyperparameters, closely followed by Logistic Regression.
+Naive bayes is still lagging behind quite a bit. Comparing to the linear SVM before, the performance has dropped slightly.
+
+\begin{table}[h!]
+    \centering
+    \caption{Model Comparison Analysis Results}
+    \label{tab:all_features_model_comparison}
+    \begin{tabular}{l c c c c}
+        \toprule
+        \textbf{Model}              & \textbf{Weighted Precision} & \textbf{Weighted Recall} & \textbf{Weighted F1-score} \\
+        \midrule
+        \textbf{SVM\_optimal}       & 0.968                       & 0.969                    & \textbf{0.968}             \\
+        \textbf{LogisticRegression} & 0.967                       & 0.968                    & 0.967                      \\
+        \textbf{NaiveBayes}         & 0.928                       & 0.886                    & 0.901                      \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
 
 

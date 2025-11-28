@@ -1,3 +1,6 @@
+# I use feature flags for this assignment because it is convient for experimenting with multiple combinations of features.
+# This method was thaught to me by my collegues at Brainial and I found it very useful for this kind of experiments.
+
 from sklearn.linear_model import LogisticRegression
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.preprocessing import StandardScaler
@@ -19,7 +22,7 @@ from loguru import logger # My prefered logger
 import os
 from datetime import datetime
 
-# Configure loguru logger
+# Configure loguru logger (my preferred one)
 logger.remove()  # Remove default handler, otherwise logs will be duplicated
 logger.add(
     "code/assignment3/feature_ablation_{time}.log",
@@ -69,7 +72,7 @@ def extract_combined_features(conllfile, word_embedding_model, feature_flags=Non
                 token = row[0]
                 pos = row[1]
                 
-                # Traditional features
+                # Traditional features, using feature flags here for convenience
                 feature_dict = {}
                 if feature_flags.get('token', True):
                     feature_dict['token'] = token
@@ -112,7 +115,7 @@ def extract_combined_features(conllfile, word_embedding_model, feature_flags=Non
     else:
         traditional_features_vectorized = vectorizer.transform(traditional_features)
     
-    # Combine features if both types are used
+    # Combine traditional features with embeddings if flag is enabled
     if feature_flags.get('embeddings', True):
         logger.info("Combining traditional features with word embeddings...")
         embedding_features = np.array(embedding_features)
@@ -130,10 +133,9 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
     """
     logger.info("Starting feature ablation experiments")
     
-    # Create figures directory if it doesn't exist
     os.makedirs('code/assignment3/figures', exist_ok=True)
     
-    # Define feature combinations to test
+    # Define feature combinations to test (this were my final four combinations, earlier ones were discarded from the code)
     feature_combinations = [
         # Adding case
         {
@@ -191,10 +193,9 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
     
     results = {}
     
-    # Create results directory if it doesn't exist
+
     os.makedirs('code/assignment3/results', exist_ok=True)
-    
-    # Open results file
+        # Open results file
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     results_file = f'code/assignment3/results/ablation_results_{timestamp}.txt'
     
@@ -215,7 +216,6 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
             for feature, status in combo['flags'].items():
                 f.write(f"- {feature}: {'✓' if status else '✗'}\n")
             
-            # Extract features with current combination
             logger.info("Extracting training features...")
             train_features, train_labels, vec = extract_combined_features(
                 train_file, 
@@ -228,18 +228,15 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
                 dev_file,
                 word_embedding_model,
                 combo['flags'],
-                vectorizer=vec  # Pass the fitted vectorizer from training
+                vectorizer=vec
             )
             
-            # Write feature matrix information
             f.write(f"\nFeature matrix shape: {train_features.shape}\n")
             
-            # Train model
             logger.info("Training SVM model...")
             model = LinearSVC()
             model.fit(train_features, train_labels)
             
-            # Make predictions
             logger.info("Making predictions...")
             predictions = model.predict(dev_features)
             
@@ -249,7 +246,6 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
             f.write("\nClassification Report:\n")
             f.write(report)
             
-            # Save confusion matrix
             logger.info(f"Generating confusion matrix for {combo['name']}...")
             plt.figure(figsize=(12, 10))
             cm = confusion_matrix(dev_labels, predictions, normalize='true')
@@ -259,10 +255,8 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
             plt.savefig(f'code/assignment3/figures/confusion_matrix_{combo["name"]}.png')
             plt.close()
             
-            # Write confusion matrix path
             f.write(f"\nConfusion matrix saved as: figures/confusion_matrix_{combo['name']}.png\n")
             
-            # Store results
             results[combo['name']] = {
                 'report': report,
                 'confusion_matrix': cm
@@ -275,17 +269,14 @@ def run_feature_ablation_experiment(train_file, dev_file, word_embedding_model):
         f.write("=======\n")
         f.write("Performance comparison across feature combinations:\n\n")
         
-        # Extract F1-scores for comparison
         f1_scores = {}
         for name, result in results.items():
-            # Parse the classification report to get the weighted avg F1-score
             lines = result['report'].split('\n')
             for line in lines:
                 if 'weighted avg' in line:
                     f1_score = float(line.split()[-2])
                     f1_scores[name] = f1_score
         
-        # Sort combinations by F1-score
         sorted_combinations = sorted(f1_scores.items(), key=lambda x: x[1], reverse=True)
         
         for name, score in sorted_combinations:
@@ -310,8 +301,8 @@ def main(argv=None):
     
     # Run feature ablation experiments
     results, results_file = run_feature_ablation_experiment(train_file, dev_file, language_model)
-    
-    # Also save results as pickle for potential later programmatic use
+
+    # Also save results as pickle to not lose progress when computer crashes
     with open('code/assignment3/results/ablation_results.pkl', 'wb') as f:
         pickle.dump(results, f)
     
